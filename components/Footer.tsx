@@ -1,74 +1,99 @@
-import React from 'react';
-import { CITIES } from '../constants';
+import React, { useRef } from 'react';
+import { motion, useScroll, useVelocity, useSpring, useTransform, useAnimationFrame } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+
+const VelocityMarquee: React.FC = () => {
+  const baseX = useRef(0);
+  const { scrollY } = useScroll();
+  const scrollVelocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(scrollVelocity, {
+    damping: 50,
+    stiffness: 400
+  });
+  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
+    clamp: false
+  });
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useAnimationFrame((t, delta) => {
+    let moveBy = 2 * (delta / 16); // Base speed
+
+    // Add scroll velocity influence
+    const vel = velocityFactor.get();
+    if (vel !== 0) {
+      moveBy += moveBy * Math.abs(vel);
+    }
+
+    baseX.current -= moveBy;
+
+    // Hard wrap logic at -50% (assuming 2 copies of content)
+    if (baseX.current <= -50) {
+      baseX.current = 0;
+    }
+
+    if (containerRef.current) {
+      containerRef.current.style.transform = `translateX(${baseX.current}%)`;
+    }
+  });
+
+  return (
+    <div className="py-8 border-b border-white/5 whitespace-nowrap overflow-hidden flex w-full">
+      <div ref={containerRef} className="flex gap-12 w-fit">
+        {/* Duplicate content enough times to ensure seamless loop */}
+        {[...Array(4)].map((_, i) => (
+          <React.Fragment key={i}>
+            {["PARIS", "NEW YORK", "TOKYO", "LONDON", "BERLIN", "SEOUL", "AMSTERDAM"].map((city) => (
+              <span key={city} className="text-6xl md:text-8xl font-display font-bold text-transparent stroke-text opacity-20">
+                {city}
+              </span>
+            ))}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
-    <footer className="bg-[#111] text-white overflow-hidden">
-      {/* City Marquee */}
-      <div className="py-8 border-b border-white/10 overflow-hidden">
-        <div className="animate-marquee-reverse whitespace-nowrap flex gap-12">
-           {[...CITIES, ...CITIES, ...CITIES].map((city, idx) => (
-            <span key={idx} className="text-sm tracking-[0.3em] text-gray-500">
-              {city}
-            </span>
-          ))}
-        </div>
-      </div>
+    <footer className="bg-deep-space text-soft-white overflow-hidden border-t border-white/5">
+      {/* City Marquee with Velocity */}
+      <VelocityMarquee />
 
-      <div className="py-24 px-6 md:px-12 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
-        <div>
-          <h2 className="text-2xl font-bold tracking-widest mb-8">C H D</h2>
-          <p className="text-gray-500 text-sm leading-relaxed">
-            Crafting the extraordinary through <br/> art, design, and technology.
+      <div className="px-6 md:px-12 py-24 grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="col-span-1 md:col-span-2">
+          <h2 className="text-2xl font-bold tracking-widest mb-8 font-display text-neon-lime">WEBSTAR STUDIO</h2>
+          <p className="text-3xl font-editorial italic text-lavender-mist max-w-md leading-tight">
+            "Crafting digital experiences that transcend boundaries and redefine perception."
           </p>
         </div>
 
-        <div>
-          <h4 className="text-xs tracking-widest uppercase text-gray-500 mb-6">Address</h4>
-          <p className="font-light leading-relaxed">
-            12 Rue de la Paix<br />
-            75002 Paris<br />
-            France
-          </p>
+        <div className="col-span-1">
+          <h4 className="text-xs uppercase tracking-widest text-neon-lime mb-6">{t('footer.social')}</h4>
+          <ul className="space-y-4 font-light text-lavender-mist">
+            <li className="hover:text-white transition-colors cursor-pointer">Instagram</li>
+            <li className="hover:text-white transition-colors cursor-pointer">Twitter</li>
+            <li className="hover:text-white transition-colors cursor-pointer">LinkedIn</li>
+            <li className="hover:text-white transition-colors cursor-pointer">Behance</li>
+          </ul>
         </div>
 
-        <div>
-          <h4 className="text-xs tracking-widest uppercase text-gray-500 mb-6">Contact</h4>
-          <p className="font-light leading-relaxed mb-4">
-            +33 1 42 68 53 00<br />
-            hello@chd-artmaker.com
-          </p>
-          <div className="flex gap-4 text-xs tracking-widest underline underline-offset-4">
-            <a href="#" className="hover:text-gray-400">INSTAGRAM</a>
-            <a href="#" className="hover:text-gray-400">LINKEDIN</a>
-          </div>
-        </div>
-
-        <div>
-           <h4 className="text-xs tracking-widest uppercase text-gray-500 mb-6">Legal</h4>
-           <ul className="space-y-2 text-sm text-gray-400">
-             <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-             <li><a href="#" className="hover:text-white transition-colors">Terms of Use</a></li>
-             <li><a href="#" className="hover:text-white transition-colors">Credits</a></li>
-           </ul>
+        <div className="col-span-1">
+          <h4 className="text-xs uppercase tracking-widest text-neon-lime mb-6">{t('footer.legal')}</h4>
+          <ul className="space-y-4 font-light text-lavender-mist">
+            <li className="hover:text-white transition-colors cursor-pointer">{t('footer.privacy')}</li>
+            <li className="hover:text-white transition-colors cursor-pointer">{t('footer.terms')}</li>
+          </ul>
         </div>
       </div>
 
-      <div className="py-8 text-center border-t border-white/10">
-        <p className="text-[10px] tracking-[0.2em] text-gray-600">
-          © {new Date().getFullYear()} CHD ART MAKER. ALL RIGHTS RESERVED.
-        </p>
+      <div className="px-6 md:px-12 py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-white/30 tracking-widest uppercase">
+        <p>{t('footer.copyright')}</p>
+        <p>EST. 2024</p>
       </div>
-
-      <style>{`
-        .animate-marquee-reverse {
-          animation: marqueeReverse 40s linear infinite;
-        }
-        @keyframes marqueeReverse {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-        }
-      `}</style>
     </footer>
   );
 };

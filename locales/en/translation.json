@@ -1,0 +1,83 @@
+{
+    "nav": {
+        "projects": "Projects",
+        "expertise": "Expertise",
+        "agency": "Agency",
+        "contact": "Contact"
+    },
+    "hero": {
+        "title": "WEBSTAR",
+        "subtitle": "Launching your business to Success",
+        "scroll": "Scroll",
+        "card": {
+            "label": "FEATURED MISSION",
+            "title": "LUMINOUS",
+            "desc": "Explore the latest installation at the intersection of light and matter."
+        }
+    },
+    "intro": {
+        "line1": "WE SHAPE",
+        "line2": "THE FUTURE",
+        "desc1": "WEBSTAR is a digital studio dedicated to innovation and spatial design. We bridge the gap between artistic vision and technical reality, transforming ambitious concepts into tangible experiences.",
+        "desc2": "From monumental digital products to immersive installations, our team orchestrstrates every detail with precision, passion, and a relentless pursuit of aesthetic perfection."
+    },
+    "expertise": {
+        "title": "Our Expertise",
+        "list": {
+            "e1": {
+                "title": "CONCEPTION",
+                "points": [
+                    "Artistic Direction",
+                    "Technical Studies",
+                    "Prototyping"
+                ]
+            },
+            "e2": {
+                "title": "PRODUCTION",
+                "points": [
+                    "Material Sourcing",
+                    "Craftsmanship",
+                    "Quality Control"
+                ]
+            },
+            "e3": {
+                "title": "INSTALLATION",
+                "points": [
+                    "Logistics",
+                    "On-site Assembly",
+                    "Safety Standards"
+                ]
+            },
+            "e4": {
+                "title": "MAINTENANCE",
+                "points": [
+                    "Monitoring",
+                    "Restoration",
+                    "Upcycling"
+                ]
+            }
+        }
+    },
+    "projects": {
+        "title": "Selected Works",
+        "view_all": "View All Projects"
+    },
+    "logos": {
+        "trusted_by": "Trusted By"
+    },
+    "news": {
+        "title": "JOURNAL",
+        "read_all": "Read All"
+    },
+    "footer": {
+        "address_label": "Address",
+        "contact_label": "Contact",
+        "legal_label": "Legal",
+        "legal": {
+            "privacy": "Privacy Policy",
+            "terms": "Terms of Use",
+            "credits": "Credits"
+        },
+        "copyright": "© {{year}} WEBSTAR STUDIO. ALL RIGHTS RESERVED."
+    }
+}

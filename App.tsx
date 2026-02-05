@@ -8,58 +8,67 @@ import Projects from './components/Projects';
 import Logos from './components/Logos';
 import News from './components/News';
 import Footer from './components/Footer';
+import Preloader from './components/Preloader';
+import CustomCursor from './components/CustomCursor';
+
+import ParticleGrid from './components/ParticleGrid'; // NEW
+
+import Lenis from 'lenis';
 
 const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
-  // Fake Loading Screen
+  // Initialize Lenis Smooth Scroll
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2000);
-    return () => clearTimeout(timer);
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
   }, []);
 
-  // Prevent scroll when menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [isMenuOpen]);
-
-  if (isLoading) {
-    return (
-      <div className="fixed inset-0 bg-white z-50 flex items-center justify-center">
-        <div className="animate-pulse">
-           <span className="text-4xl font-bold tracking-[0.5em]">C H D</span>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="bg-white min-h-screen selection:bg-black selection:text-white">
-      <Header 
-        isMenuOpen={isMenuOpen} 
-        onMenuClick={() => setIsMenuOpen(!isMenuOpen)} 
-      />
-      
-      <Navigation 
-        isOpen={isMenuOpen} 
-        onClose={() => setIsMenuOpen(false)} 
-      />
+    <div className="bg-deep-space min-h-screen selection:bg-neon-lime selection:text-deep-space cursor-none relative">
+      <ParticleGrid /> {/* Background */}
 
-      <main>
-        <Hero />
-        <Intro />
-        <Expertise />
-        <Projects />
-        <Logos />
-        <News />
-      </main>
+      <div className="relative z-10"> {/* Content Wrapper */}
+        <Preloader />
+        <CustomCursor />
 
-      <Footer />
+        <Header
+          isMenuOpen={isMenuOpen}
+          onMenuClick={() => setIsMenuOpen(!isMenuOpen)}
+        />
+
+        <Navigation
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+        />
+
+        <main className="text-white">
+          <Hero />
+          <Intro />
+          <Expertise />
+          <Projects />
+          <Logos />
+          <News />
+        </main>
+
+        <Footer />
+      </div>
     </div>
   );
 };

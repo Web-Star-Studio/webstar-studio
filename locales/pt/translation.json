@@ -1,0 +1,83 @@
+{
+    "nav": {
+        "projects": "Projetos",
+        "expertise": "Expertise",
+        "agency": "Agência",
+        "contact": "Contato"
+    },
+    "hero": {
+        "title": "WEBSTAR",
+        "subtitle": "Lançando seu negócio ao Sucesso",
+        "scroll": "Rolar",
+        "card": {
+            "label": "MISSÃO EM DESTAQUE",
+            "title": "LUMINOSO",
+            "desc": "Explore a última instalação na interseção de luz e matéria."
+        }
+    },
+    "intro": {
+        "line1": "NÓS MOLDAMOS",
+        "line2": "O FUTURO",
+        "desc1": "WEBSTAR é um estúdio digital dedicado à inovação e design espacial. Unimos visão artística e realidade técnica, transformando conceitos ambiciosos em experiências tangíveis.",
+        "desc2": "De produtos digitais monumentais a instalações imersivas, nossa equipe orquestra cada detalhe com precisão, paixão e uma busca incansável pela perfeição estética."
+    },
+    "expertise": {
+        "title": "Nossa Expertise",
+        "list": {
+            "e1": {
+                "title": "CONCEPÇÃO",
+                "points": [
+                    "Direção Artística",
+                    "Estudos Técnicos",
+                    "Prototipagem"
+                ]
+            },
+            "e2": {
+                "title": "PRODUÇÃO",
+                "points": [
+                    "Fornecimento de Materiais",
+                    "Artesanato",
+                    "Controle de Qualidade"
+                ]
+            },
+            "e3": {
+                "title": "INSTALAÇÃO",
+                "points": [
+                    "Logística",
+                    "Montagem no Local",
+                    "Normas de Segurança"
+                ]
+            },
+            "e4": {
+                "title": "MANUTENÇÃO",
+                "points": [
+                    "Monitoramento",
+                    "Restauração",
+                    "Upcycling"
+                ]
+            }
+        }
+    },
+    "projects": {
+        "title": "Trabalhos Selecionados",
+        "view_all": "Ver Todos os Projetos"
+    },
+    "logos": {
+        "trusted_by": "Com a Confiança de"
+    },
+    "news": {
+        "title": "JORNAL",
+        "read_all": "Ler Tudo"
+    },
+    "footer": {
+        "address_label": "Endereço",
+        "contact_label": "Contato",
+        "legal_label": "Legal",
+        "legal": {
+            "privacy": "Política de Privacidade",
+            "terms": "Termos de Uso",
+            "credits": "Créditos"
+        },
+        "copyright": "© {{year}} WEBSTAR STUDIO. TODOS OS DIREITOS RESERVADOS."
+    }
+}
