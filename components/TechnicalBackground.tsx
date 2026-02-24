@@ -241,10 +241,6 @@ const TechnicalBackground: React.FC = () => {
             ctx.fillRect(0, 0, w, h);
 
             drawGrid();
-            drawCentralAxis();
-            drawSchematicCurves(t);
-            drawDataBars(t);
-            drawNodes(t);
             drawVignette();
 
             animRef.current = requestAnimationFrame(draw);

@@ -1,0 +1,415 @@
+commit 51c674da387b09ae872871b4652efe647d2fefcb
+Author: David Philien <davidplgomes@gmail.com>
+Date:   Mon Feb 23 20:13:01 2026 -0300
+
+    feat: Add foundational UI components for main website sections and update project dependencies and configuration.
+
+diff --git a/components/Hero.tsx b/components/Hero.tsx
+index 869c5a2..5156038 100644
+--- a/components/Hero.tsx
++++ b/components/Hero.tsx
+@@ -1,80 +1,77 @@
+ import React, { useRef } from 'react';
+-import { motion, useScroll, useTransform } from 'framer-motion';
+-import { useTranslation } from 'react-i18next';
+-import { ArrowDown } from 'lucide-react';
++import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
++import { WebLogo, StarLogo } from './WebstarLogo';
+ 
+ const Hero: React.FC = () => {
+-  const { t } = useTranslation();
+-  const { scrollY } = useScroll();
+-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+-  const titleRef = useRef<HTMLHeadingElement>(null);
+-  const subtitleRef = useRef<HTMLParagraphElement>(null);
++  const containerRef = useRef<HTMLDivElement>(null);
++  const { scrollYProgress } = useScroll({
++    target: containerRef,
++    offset: ["start start", "end end"]
++  });
+ 
+-  // Helper to split text into words for cinematic reveal
+-  const splitText = (text: string) => {
+-    return text.split(' ').map((word, index) => (
+-      <span key={index} className="inline-block mr-4 md:mr-8 overflow-hidden">
+-        <motion.span
+-          initial={{ y: 100 }}
+-          animate={{ y: 0 }}
+-          transition={{ duration: 1, delay: 0.5 + (index * 0.1), ease: [0.22, 1, 0.36, 1] }}
+-          className="inline-block"
+-        >
+-          {word}
+-        </motion.span>
+-      </span>
+-    ));
+-  };
++  // Smooth springs for high-end feel
++  const smoothProgress = useSpring(scrollYProgress, {
++    stiffness: 100,
++    damping: 30,
++    restDelta: 0.001
++  });
++
++  // 1. Text Merging Phase (Progress: 0 -> 0.6)
++  const leftX = useTransform(smoothProgress, [0, 0.6], ['-12vw', '0vw']);
++  const rightX = useTransform(smoothProgress, [0, 0.6], ['12vw', '0vw']);
++
++  // 2. Main Title Scale/Impact
++  const logoScale = useTransform(smoothProgress, [0, 0.6], [1.3, 1]);
++  const logoOpacity = useTransform(smoothProgress, [0.7, 0.95], [1, 0]);
++
++  // 3. Tilted Glass Slab (Restored with Lime Palette) - Parallax/Scale back on scroll
++  const glassY = useTransform(smoothProgress, [0, 1], ['0vh', '40vh']);
++  const glassScale = useTransform(smoothProgress, [0.6, 1], [1, 0.8]);
++  const glassOpacity = useTransform(smoothProgress, [0.8, 0.95], [1, 0]);
+ 
+   return (
+-    <section className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-transparent">
+-      {/* Note: Background is now handled by ParticleGrid in App.tsx */}
++    <section ref={containerRef} className="relative h-[250vh] bg-[#000000]">
++      {/* 
++        Sticky Container 
++        Keeps the Hero pinned to the viewport during the 250vh scroll duration 
++      */}
++      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
++
++        {/* Dark underlay */}
++        <div className="absolute inset-0 bg-[#000000] z-0" />
+ 
+-      {/* Fog/Mist Layers - Retained for Atmosphere */}
+-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+-        <motion.div
+-          animate={{ x: [-100, 100], opacity: [0.3, 0.6, 0.3] }}
+-          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
+-          className="absolute -bottom-1/2 -left-1/4 w-[150%] h-[150%] bg-[radial-gradient(circle,rgba(201,255,0,0.05)_0%,transparent_60%)] blur-[100px]"
+-        />
+-      </div>
+ 
+-      {/* Main Content - Cinematic Layout */}
+-      <motion.div
+-        style={{ y: y1 }}
+-        className="relative z-10 text-center text-soft-white mix-blend-difference"
+-      >
+-        <h1
+-          ref={titleRef}
+-          className="text-[15vw] md:text-[12vw] font-bold leading-none select-none font-display uppercase tracking-tighter drop-shadow-2xl"
+-        >
+-          {splitText(t('hero.title'))}
+-        </h1>
+-        <p
+-          ref={subtitleRef}
+-          className="mt-8 text-xl md:text-3xl tracking-[0.1em] font-editorial text-neon-lime/90 mix-blend-screen"
+-        >
+-          {t('hero.subtitle')}
+-        </p>
+-      </motion.div>
+ 
+-      {/* Scroll Indicator */}
+-      <motion.div
+-        style={{ opacity }}
+-        initial={{ opacity: 0 }}
+-        animate={{ opacity: 1 }}
+-        transition={{ delay: 2, duration: 1 }}
+-        className="absolute bottom-12 left-1/2 -translate-x-1/2 text-white/50 flex flex-col items-center gap-2"
+-      >
+-        <span className="text-[10px] tracking-[0.3em] uppercase">{t('hero.scroll')}</span>
+-        <motion.div
+-          animate={{ y: [0, 10, 0] }}
+-          transition={{ repeat: Infinity, duration: 2 }}
+-        >
+-          <ArrowDown size={16} strokeWidth={1} />
+-        </motion.div>
+-      </motion.div>
++        {/* 
++          Foreground Pinned Dynamic Typography
++          Wireframe segments merging over the new Lime Slab.
++        */}
++        <div className="relative z-20 w-full max-w-[1800px] mx-auto flex items-center justify-center pointer-events-none px-6">
++          <motion.div
++            style={{
++              x: leftX,
++              scale: logoScale,
++              opacity: logoOpacity
++            }}
++            className="flex-shrink-0"
++          >
++            <WebLogo className="w-[35vw] md:w-[28vw] text-soft-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]" />
++          </motion.div>
++
++          <motion.div
++            style={{
++              x: rightX,
++              scale: logoScale,
++              opacity: logoOpacity
++            }}
++            className="flex-shrink-0"
++          >
++            <StarLogo className="w-[41vw] md:w-[33vw] text-soft-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]" />
++          </motion.div>
++        </div>
++
++
++      </div>
+     </section>
+   );
+ };
+
+commit cd8e9800734f8eb5c6d87b319dae6aa4c76a6f8e
+Author: David Philien <davidplgomes@gmail.com>
+Date:   Thu Feb 5 17:25:32 2026 -0300
+
+    feat: Initialize core application UI with essential components and internationalization support.
+
+diff --git a/components/Hero.tsx b/components/Hero.tsx
+index 6319ad8..869c5a2 100644
+--- a/components/Hero.tsx
++++ b/components/Hero.tsx
+@@ -1,88 +1,73 @@
+-import React, { useEffect, useState } from 'react';
++import React, { useRef } from 'react';
+ import { motion, useScroll, useTransform } from 'framer-motion';
++import { useTranslation } from 'react-i18next';
+ import { ArrowDown } from 'lucide-react';
+ 
+ const Hero: React.FC = () => {
++  const { t } = useTranslation();
+   const { scrollY } = useScroll();
+   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+-  const [currentBg, setCurrentBg] = useState(0);
++  const titleRef = useRef<HTMLHeadingElement>(null);
++  const subtitleRef = useRef<HTMLParagraphElement>(null);
+ 
+-  // Simulate morphing background with simple crossfade of abstract textures
+-  const backgrounds = [
+-    'https://picsum.photos/id/16/1920/1080',
+-    'https://picsum.photos/id/29/1920/1080',
+-    'https://picsum.photos/id/33/1920/1080'
+-  ];
+-
+-  useEffect(() => {
+-    const interval = setInterval(() => {
+-      setCurrentBg((prev) => (prev + 1) % backgrounds.length);
+-    }, 4000);
+-    return () => clearInterval(interval);
+-  }, [backgrounds.length]);
++  // Helper to split text into words for cinematic reveal
++  const splitText = (text: string) => {
++    return text.split(' ').map((word, index) => (
++      <span key={index} className="inline-block mr-4 md:mr-8 overflow-hidden">
++        <motion.span
++          initial={{ y: 100 }}
++          animate={{ y: 0 }}
++          transition={{ duration: 1, delay: 0.5 + (index * 0.1), ease: [0.22, 1, 0.36, 1] }}
++          className="inline-block"
++        >
++          {word}
++        </motion.span>
++      </span>
++    ));
++  };
+ 
+   return (
+-    <section className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-black">
+-      {/* Background Layer */}
+-      {backgrounds.map((bg, index) => (
++    <section className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-transparent">
++      {/* Note: Background is now handled by ParticleGrid in App.tsx */}
++
++      {/* Fog/Mist Layers - Retained for Atmosphere */}
++      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+         <motion.div
+-          key={index}
+-          className="absolute inset-0 bg-cover bg-center opacity-40 grayscale"
+-          style={{ backgroundImage: `url(${bg})` }}
+-          initial={{ opacity: 0 }}
+-          animate={{ opacity: index === currentBg ? 0.4 : 0 }}
+-          transition={{ duration: 2 }}
++          animate={{ x: [-100, 100], opacity: [0.3, 0.6, 0.3] }}
++          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
++          className="absolute -bottom-1/2 -left-1/4 w-[150%] h-[150%] bg-[radial-gradient(circle,rgba(201,255,0,0.05)_0%,transparent_60%)] blur-[100px]"
+         />
+-      ))}
+-      
+-      {/* Grid Overlay */}
+-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100px_100px]" />
++      </div>
+ 
+-      {/* Main Content */}
+-      <motion.div 
+-        style={{ y: y1 }} 
+-        className="relative z-10 text-center text-white mix-blend-difference"
++      {/* Main Content - Cinematic Layout */}
++      <motion.div
++        style={{ y: y1 }}
++        className="relative z-10 text-center text-soft-white mix-blend-difference"
+       >
+-        <motion.h1 
+-          initial={{ opacity: 0, letterSpacing: '0.1em' }}
+-          animate={{ opacity: 1, letterSpacing: '0.5em' }}
+-          transition={{ duration: 2, ease: "easeOut" }}
+-          className="text-[12vw] md:text-[15vw] font-bold leading-none select-none"
++        <h1
++          ref={titleRef}
++          className="text-[15vw] md:text-[12vw] font-bold leading-none select-none font-display uppercase tracking-tighter drop-shadow-2xl"
+         >
+-          C H D
+-        </motion.h1>
+-        <motion.p 
+-          initial={{ opacity: 0, y: 20 }}
+-          animate={{ opacity: 1, y: 0 }}
+-          transition={{ delay: 1, duration: 1 }}
+-          className="mt-8 text-sm md:text-base tracking-[0.5em] uppercase font-light"
++          {splitText(t('hero.title'))}
++        </h1>
++        <p
++          ref={subtitleRef}
++          className="mt-8 text-xl md:text-3xl tracking-[0.1em] font-editorial text-neon-lime/90 mix-blend-screen"
+         >
+-          Art Maker Studio
+-        </motion.p>
+-      </motion.div>
+-
+-      {/* Floating Card - Bottom Right */}
+-      <motion.div 
+-        initial={{ y: 100, opacity: 0 }}
+-        animate={{ y: 0, opacity: 1 }}
+-        transition={{ delay: 1.5, duration: 1 }}
+-        className="absolute bottom-12 right-8 md:right-16 md:bottom-16 w-64 bg-white text-black p-6 hidden md:block shadow-2xl"
+-      >
+-        <p className="text-xs tracking-widest text-gray-500 mb-2">FEATURED</p>
+-        <h3 className="text-xl tracking-widest font-semibold mb-2">LUMINOUS</h3>
+-        <div className="w-full h-1 bg-black mb-2" />
+-        <p className="text-xs leading-relaxed">
+-          Explore the latest installation at the intersection of light and matter.
++          {t('hero.subtitle')}
+         </p>
+       </motion.div>
+ 
+       {/* Scroll Indicator */}
+-      <motion.div 
++      <motion.div
+         style={{ opacity }}
+-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white flex flex-col items-center gap-2"
++        initial={{ opacity: 0 }}
++        animate={{ opacity: 1 }}
++        transition={{ delay: 2, duration: 1 }}
++        className="absolute bottom-12 left-1/2 -translate-x-1/2 text-white/50 flex flex-col items-center gap-2"
+       >
+-        <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
++        <span className="text-[10px] tracking-[0.3em] uppercase">{t('hero.scroll')}</span>
+         <motion.div
+           animate={{ y: [0, 10, 0] }}
+           transition={{ repeat: Infinity, duration: 2 }}
+
+commit 3525337d2fc1f05b48d987d1dec3364b0a611a2c
+Author: David Philien <davidplgomes@gmail.com>
+Date:   Wed Feb 4 20:02:16 2026 -0300
+
+    init commit
+
+diff --git a/components/Hero.tsx b/components/Hero.tsx
+new file mode 100644
+index 0000000..6319ad8
+--- /dev/null
++++ b/components/Hero.tsx
+@@ -0,0 +1,97 @@
++import React, { useEffect, useState } from 'react';
++import { motion, useScroll, useTransform } from 'framer-motion';
++import { ArrowDown } from 'lucide-react';
++
++const Hero: React.FC = () => {
++  const { scrollY } = useScroll();
++  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
++  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
++  const [currentBg, setCurrentBg] = useState(0);
++
++  // Simulate morphing background with simple crossfade of abstract textures
++  const backgrounds = [
++    'https://picsum.photos/id/16/1920/1080',
++    'https://picsum.photos/id/29/1920/1080',
++    'https://picsum.photos/id/33/1920/1080'
++  ];
++
++  useEffect(() => {
++    const interval = setInterval(() => {
++      setCurrentBg((prev) => (prev + 1) % backgrounds.length);
++    }, 4000);
++    return () => clearInterval(interval);
++  }, [backgrounds.length]);
++
++  return (
++    <section className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-black">
++      {/* Background Layer */}
++      {backgrounds.map((bg, index) => (
++        <motion.div
++          key={index}
++          className="absolute inset-0 bg-cover bg-center opacity-40 grayscale"
++          style={{ backgroundImage: `url(${bg})` }}
++          initial={{ opacity: 0 }}
++          animate={{ opacity: index === currentBg ? 0.4 : 0 }}
++          transition={{ duration: 2 }}
++        />
++      ))}
++      
++      {/* Grid Overlay */}
++      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100px_100px]" />
++
++      {/* Main Content */}
++      <motion.div 
++        style={{ y: y1 }} 
++        className="relative z-10 text-center text-white mix-blend-difference"
++      >
++        <motion.h1 
++          initial={{ opacity: 0, letterSpacing: '0.1em' }}
++          animate={{ opacity: 1, letterSpacing: '0.5em' }}
++          transition={{ duration: 2, ease: "easeOut" }}
++          className="text-[12vw] md:text-[15vw] font-bold leading-none select-none"
++        >
++          C H D
++        </motion.h1>
++        <motion.p 
++          initial={{ opacity: 0, y: 20 }}
++          animate={{ opacity: 1, y: 0 }}
++          transition={{ delay: 1, duration: 1 }}
++          className="mt-8 text-sm md:text-base tracking-[0.5em] uppercase font-light"
++        >
++          Art Maker Studio
++        </motion.p>
++      </motion.div>
++
++      {/* Floating Card - Bottom Right */}
++      <motion.div 
++        initial={{ y: 100, opacity: 0 }}
++        animate={{ y: 0, opacity: 1 }}
++        transition={{ delay: 1.5, duration: 1 }}
++        className="absolute bottom-12 right-8 md:right-16 md:bottom-16 w-64 bg-white text-black p-6 hidden md:block shadow-2xl"
++      >
++        <p className="text-xs tracking-widest text-gray-500 mb-2">FEATURED</p>
++        <h3 className="text-xl tracking-widest font-semibold mb-2">LUMINOUS</h3>
++        <div className="w-full h-1 bg-black mb-2" />
++        <p className="text-xs leading-relaxed">
++          Explore the latest installation at the intersection of light and matter.
++        </p>
++      </motion.div>
++
++      {/* Scroll Indicator */}
++      <motion.div 
++        style={{ opacity }}
++        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white flex flex-col items-center gap-2"
++      >
++        <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
++        <motion.div
++          animate={{ y: [0, 10, 0] }}
++          transition={{ repeat: Infinity, duration: 2 }}
++        >
++          <ArrowDown size={16} strokeWidth={1} />
++        </motion.div>
++      </motion.div>
++    </section>
++  );
++};
++
++export default Hero;
+\ No newline at end of file

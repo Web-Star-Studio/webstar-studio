@@ -10,7 +10,6 @@ const Hero: React.FC = () => {
   const textContainerRef = useRef<HTMLDivElement>(null);
   const text1Ref = useRef<HTMLHeadingElement>(null);
   const text2Ref = useRef<HTMLHeadingElement>(null);
-  const tagRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -25,13 +24,6 @@ const Hero: React.FC = () => {
         }
       });
 
-      // 1. Tag fades out and moves up
-      tl.to(tagRef.current, {
-        opacity: 0,
-        y: -50,
-        duration: 0.5,
-        ease: 'power2.out',
-      }, 0);
 
       // 2. Text scales down slightly and moves apart
       tl.to(text1Ref.current, {
@@ -101,12 +93,6 @@ const Hero: React.FC = () => {
         ref={textContainerRef}
         className="relative z-10 w-full h-full flex flex-col items-center justify-center pointer-events-none px-4"
       >
-        <div
-          ref={tagRef}
-          className="absolute top-[20%] md:top-[25%] px-4 py-1.5 md:px-6 md:py-2 rounded-full border border-white/30 text-[10px] md:text-sm tracking-[0.2em] md:tracking-widest uppercase font-mono bg-black/40 backdrop-blur-md text-white/90"
-        >
-          [ 2026—DIGITAL AGENCY ]
-        </div>
 
         <div className="flex flex-col items-center justify-center w-full leading-[0.8] font-black uppercase tracking-tighter mix-blend-difference mt-20">
           <h1

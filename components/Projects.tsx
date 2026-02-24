@@ -7,6 +7,11 @@ import { PROJECTS } from '../constants';
 const Projects: React.FC = () => {
   const { t } = useTranslation();
 
+  const translatedTitle = t('projects.title') || 'SELECTED WORKS';
+  const titleWords = translatedTitle.split(' ');
+  const firstWord = titleWords.length > 0 ? titleWords[0] : '';
+  const remainingWords = titleWords.length > 1 ? titleWords.slice(1).join(' ') : '';
+
   // Motion Variants
   const cardVariants: Variants = {
     inactive: { scale: 0.95, opacity: 0.8 },
@@ -38,7 +43,15 @@ const Projects: React.FC = () => {
       <div className="px-6 md:px-12">
         <div className="flex justify-between items-end mb-16 md:mb-24">
           <h2 className="text-[12vw] leading-none font-bold font-display text-soft-white opacity-80 mix-blend-difference">
-            {t('projects.title')}
+            {firstWord}
+            {remainingWords && (
+              <>
+                <br />
+                <span className="text-transparent" style={{ WebkitTextStroke: '2px white' }}>
+                  {remainingWords}
+                </span>
+              </>
+            )}
           </h2>
           <button className="hidden md:flex items-center gap-2 border border-neon-lime text-neon-lime px-6 py-3 rounded-full text-xs tracking-widest uppercase hover:bg-neon-lime hover:text-[#000000] transition-all duration-300">
             {t('projects.view_all')} <ArrowUpRight size={16} />

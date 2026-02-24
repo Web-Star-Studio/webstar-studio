@@ -4,6 +4,7 @@ import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Intro from './components/Intro';
 import Expertise from './components/Expertise';
+import HorizontalScroll from './components/HorizontalScroll';
 import Projects from './components/Projects';
 import Logos from './components/Logos';
 import News from './components/News';
@@ -11,7 +12,7 @@ import Footer from './components/Footer';
 import Preloader from './components/Preloader';
 import CustomCursor from './components/CustomCursor';
 import TechnicalBackground from './components/TechnicalBackground';
-
+import Asterisk3D from './components/Asterisk3D';
 import Lenis from 'lenis';
 
 const App: React.FC = () => {
@@ -61,6 +62,7 @@ const App: React.FC = () => {
           <Hero />
           <Intro />
           <Expertise />
+          <HorizontalScroll />
           <Projects />
           <Logos />
           <News />

@@ -46,18 +46,46 @@ const HorizontalScroll: React.FC = () => {
     useEffect(() => {
         const ctx = gsap.context(() => {
             if (sectionRef.current && triggerRef.current) {
-                gsap.to(sectionRef.current, {
-                    x: () => -(sectionRef.current!.scrollWidth - window.innerWidth),
-                    ease: "none",
+                const scrollDistance = sectionRef.current.scrollWidth - window.innerWidth;
+                const textHighlightDuration = window.innerHeight * 0.4; // Reduced distance for faster 'load-in' feel
+
+                // Create a single master timeline for the pinned section
+                const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: triggerRef.current,
                         start: "top top",
-                        end: () => `+=${sectionRef.current!.scrollWidth - window.innerWidth}`,
-                        scrub: 1,
+                        end: () => `+=${scrollDistance + textHighlightDuration}`,
+                        scrub: 0.6, // Slightly less scrub lag for snappier feel
                         pin: true,
                         invalidateOnRefresh: true,
                     }
                 });
+
+                // Phase 1: Staggered highlight animation for "REALITIES"
+                const bgs = gsap.utils.toArray('.bg-layer');
+                const texts = gsap.utils.toArray('.text-layer');
+
+                // Add text highlight
+                tl.to(bgs, {
+                    opacity: 1,
+                    stagger: 0.05,
+                    duration: 0.4,
+                    ease: "power2.out"
+                }, 0);
+
+                tl.to(texts, {
+                    opacity: 1,
+                    stagger: 0.05,
+                    duration: 0.4,
+                    ease: "power2.out"
+                }, 0);
+
+                // Phase 2: Main horizontal scroll animation
+                tl.to(sectionRef.current, {
+                    x: () => -scrollDistance,
+                    ease: "none",
+                    duration: scrollDistance / textHighlightDuration
+                }, 0.8); // Starts slightly sooner relative to highlight completion for a fluid blend
             }
         }, triggerRef);
 
@@ -68,7 +96,7 @@ const HorizontalScroll: React.FC = () => {
         <section ref={triggerRef} className="relative h-screen w-full overflow-hidden bg-white text-deep-space">
             <div className="absolute top-12 left-12 z-10 flex gap-4 items-center">
                 <span className="h-px w-12 bg-deep-space" />
-                <h2 className="text-sm font-bold tracking-widest uppercase">Selected Works</h2>
+                <h2 className="text-sm font-bold tracking-widest uppercase">{t('projects.title')}</h2>
             </div>
 
             <div
@@ -79,7 +107,17 @@ const HorizontalScroll: React.FC = () => {
                 <div className="min-w-[40vw]">
                     <h3 className="text-6xl md:text-8xl font-display font-bold leading-[0.9] text-deep-space mb-8">
                         DIGITAL <br />
-                        <span className="text-transparent stroke-text-dark">REALITIES</span>
+                        <span className="inline-flex pt-2">
+                            {"REALITIES".split('').map((char, index) => (
+                                <span key={index} className="relative inline-block">
+                                    <span className="bg-layer absolute top-0 bottom-0 bg-neon-lime -z-10 opacity-0" style={{ left: '-0.05em', right: '-0.05em' }} />
+                                    <span className="relative z-10 inline-block">
+                                        <span className="text-transparent stroke-text-dark">{char}</span>
+                                        <span className="text-layer absolute top-0 left-0 text-deep-space opacity-0" style={{ WebkitTextStroke: '0px' }}>{char}</span>
+                                    </span>
+                                </span>
+                            ))}
+                        </span>
                     </h3>
                     <p className="text-xl md:text-2xl font-light text-gray-600 max-w-md ml-24 font-editorial italic">
                         Exploring the boundaries between physical space and digital perception.
