@@ -116,9 +116,9 @@ const Navigation: React.FC<NavigationProps> = ({ isOpen, onClose }) => {
               custom={5}
               className="mt-16 flex gap-6 text-xs tracking-[0.3em]"
             >
-              <button onClick={() => i18n.changeLanguage('en')} className={`${i18n.language.startsWith('en') ? 'border-b border-neon-lime text-neon-lime' : 'text-white/30 hover:text-white/60'} transition-colors pb-1`}>EN</button>
-              <button onClick={() => i18n.changeLanguage('pt')} className={`${i18n.language.startsWith('pt') ? 'border-b border-neon-lime text-neon-lime' : 'text-white/30 hover:text-white/60'} transition-colors pb-1`}>PT</button>
-              <button onClick={() => i18n.changeLanguage('es')} className={`${i18n.language.startsWith('es') ? 'border-b border-neon-lime text-neon-lime' : 'text-white/30 hover:text-white/60'} transition-colors pb-1`}>ES</button>
+              <button onClick={() => i18n.changeLanguage('en')} className={`${(i18n.language || 'en').startsWith('en') ? 'border-b border-neon-lime text-neon-lime' : 'text-white/30 hover:text-white/60'} transition-colors pb-1`}>EN</button>
+              <button onClick={() => i18n.changeLanguage('pt')} className={`${(i18n.language || 'en').startsWith('pt') ? 'border-b border-neon-lime text-neon-lime' : 'text-white/30 hover:text-white/60'} transition-colors pb-1`}>PT</button>
+              <button onClick={() => i18n.changeLanguage('es')} className={`${(i18n.language || 'en').startsWith('es') ? 'border-b border-neon-lime text-neon-lime' : 'text-white/30 hover:text-white/60'} transition-colors pb-1`}>ES</button>
             </motion.div>
           </div>
         </motion.div>

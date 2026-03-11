@@ -1,0 +1,46 @@
+const GlobeSection: React.FC = () => {
+  return (
+    <section id="globe-trigger" className="relative w-full h-[200vh] bg-transparent font-sans">
+      
+      {/* HTML UI Layer Overlay - Sticky so it follows the user while the 3D Globe morphs */}
+      <div className="sticky top-0 h-screen w-full flex items-center justify-between container mx-auto px-6 pointer-events-none z-10">
+        
+        {/* Left Column: Title */}
+        <div className="w-full md:w-1/2 mb-16 md:mb-0">
+          <h2 className="text-6xl md:text-8xl font-light text-white tracking-tighter leading-[1.1]">
+            Hello from the world.
+          </h2>
+        </div>
+
+        {/* Right Column: Chat Widgets */}
+        <div className="w-full md:w-1/2 flex flex-col items-end pointer-events-auto">
+          <div className="flex flex-col gap-4 max-w-md w-full">
+            
+            {/* Bubble 1 */}
+            <div className="bg-white/10 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-xl">
+              <p className="text-white/80 text-sm leading-relaxed">
+                Hello 👋 I am Arthur Bataille, CEO of NEVERHACK
+              </p>
+            </div>
+
+            {/* Bubble 2 */}
+            <div className="bg-white/10 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-xl ml-8">
+              <p className="text-white/80 text-sm leading-relaxed">
+                Feel free to connect with the global NEVERHACK team. We provide cyber security assessments to secure your infrastructure against modern threats.
+              </p>
+            </div>
+
+            {/* Action Button */}
+            <button className="mt-4 self-start bg-white text-black px-8 py-3 rounded-full text-sm font-medium hover:bg-white/80 hover:scale-[1.02] transition-all duration-300">
+              Contact us
+            </button>
+
+          </div>
+        </div>
+        
+      </div>
+    </section>
+  );
+};
+
+export default GlobeSection;
