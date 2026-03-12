@@ -40,25 +40,43 @@ const StackedCards: React.FC = () => {
 
     // Loop para criar o empilhamento sucessivo
     cards.forEach((card, index) => {
-      if (index === 0) return;
+      if (index === 0) {
+        // First card starts visible — remove its blur immediately
+        gsap.set(card, { backdropFilter: 'blur(0px)', webkitBackdropFilter: 'blur(0px)' });
+        return;
+      }
 
-      // 1. O cartão atual sobe para o centro
+      // Card starts with heavy blur while off-screen
+      gsap.set(card, { backdropFilter: 'blur(80px)', webkitBackdropFilter: 'blur(80px)' });
+
+      // 1. Card slides up into view
       tl.to(card, { y: 0, duration: 1, ease: 'none' }, index);
-      
-      // 2. Os cartões anteriores sobem um pouco (efeito pasta) e diminuem
+
+      // 2. As card settles, remove the blur (the "reveal" moment)
+      tl.to(card, {
+        backdropFilter: 'blur(0px)',
+        webkitBackdropFilter: 'blur(0px)',
+        duration: 0.6,
+        ease: 'power2.out',
+      }, index + 0.4); // Starts clearing blur halfway through the slide
+
+      // 3. Previous cards get pushed back and shrink
       for (let i = 0; i < index; i++) {
         tl.to(
           cards[i],
           {
             y: -40 * (index - i),
             scale: 1 - 0.05 * (index - i),
+            // Re-blur previous cards as they get pushed behind
+            backdropFilter: `blur(${40 * (index - i)}px)`,
+            webkitBackdropFilter: `blur(${40 * (index - i)}px)`,
             duration: 1,
             ease: 'none',
           },
-          index // O index garante que roda junto com o cartão subindo
+          index
         );
 
-        // 3. Apaga o texto do cartão de trás
+        // 4. Fade out text of previous cards
         tl.to(
           cards[i]!.querySelector('.card-content'),
           {
@@ -72,7 +90,7 @@ const StackedCards: React.FC = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full bg-[#000000] z-10 font-sans overflow-hidden">
+    <section ref={containerRef} className="relative h-screen w-full bg-transparent z-10 font-sans overflow-hidden">
       <div className="absolute top-0 left-0 h-screen w-full flex items-center justify-center">
         
         {/* Horizontal Navigation Bar */}
@@ -92,7 +110,7 @@ const StackedCards: React.FC = () => {
               ref={(el) => {
                 cardsRef.current[index] = el;
               }}
-              className="ios-glass absolute w-[80vw] max-w-4xl h-[60vh] rounded-[2rem] flex flex-col justify-between p-12 origin-top"
+              className="absolute w-[80vw] max-w-4xl h-[60vh] rounded-[4px] flex flex-col justify-between p-12 origin-top ios-glass"
               style={{
                 zIndex: index, 
               }}

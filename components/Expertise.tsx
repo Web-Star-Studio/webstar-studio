@@ -1,96 +1,105 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useTranslation } from 'react-i18next';
+'use client';
 
-gsap.registerPlugin(ScrollTrigger);
+import React from 'react';
+import { Layers, PenTool, Code2, Rocket, ShieldCheck, ArrowUpRight } from 'lucide-react';
+
+const services = [
+  {
+    id: 1,
+    title: 'Strategy',
+    label: 'BUSINESS & PRODUCT',
+    desc: 'Analyzing markets and defining digital roadmaps that align creative vision with measurable business outcomes.',
+    Icon: Layers,
+  },
+  {
+    id: 2,
+    title: 'Design',
+    label: 'DIGITAL EXPERIENCES',
+    desc: 'Crafting interfaces that merge Design Thinking with cutting-edge aesthetics — every pixel is intentional.',
+    Icon: PenTool,
+  },
+  {
+    id: 3,
+    title: 'Engineering',
+    label: 'FULL-STACK DEVELOPMENT',
+    desc: 'Building performant, scalable architectures using modern frameworks and cloud-native infrastructure.',
+    Icon: Code2,
+  },
+  {
+    id: 4,
+    title: 'Growth',
+    label: 'PERFORMANCE & SCALE',
+    desc: 'Deploying data-driven acquisition strategies and conversion optimization to accelerate digital traction.',
+    Icon: Rocket,
+  },
+  {
+    id: 5,
+    title: 'Security',
+    label: 'CYBER & COMPLIANCE',
+    desc: 'Implementing enterprise-grade protection frameworks and ensuring regulatory compliance across all touchpoints.',
+    Icon: ShieldCheck,
+  },
+];
 
 const Expertise: React.FC = () => {
-  const { t } = useTranslation();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const wordsRef = useRef<HTMLUListElement>(null);
-
-  useEffect(() => {
-    const listItems = wordsRef.current?.children;
-
-    if (listItems && listItems.length > 0) {
-      const ctx = gsap.context(() => {
-        // Pin the container and scrub through the items
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'center center',
-            end: '+=400%', // 4x height scroll duration
-            pin: true,
-            scrub: true,
-            snap: [0, 0.25, 0.5, 0.75, 1], // The "Smooth Snap" Content Stacking
-          }
-        });
-
-        // Loop through each item to highlight one by one
-        Array.from(listItems).forEach((item, index) => {
-          // Fade in/Highlight
-          tl.to(item, {
-            color: '#FFFFFF', // Change to solid white
-            opacity: 1,
-            scale: 1,
-            duration: 1,
-            ease: 'none',
-          }, index); // Absolute timing based on index
-
-          // Fade out (unless it's the last one)
-          if (index < listItems.length - 1) {
-            tl.to(item, {
-              color: 'rgba(255, 255, 255, 0)', // Outline stroke color
-              WebkitTextStroke: '1px rgba(255, 255, 255, 0.2)',
-              opacity: 0.3,
-              scale: 0.95,
-              duration: 1,
-              ease: 'none',
-            }, index + 1);
-          }
-        });
-
-      }, containerRef);
-      return () => ctx.revert();
-    }
-  }, [t]);
-
-  // Use raw translation keys since the dynamic ones would need to be rewired.
-  const words = [
-    "EXPERIENCE",
-    "CURIOSITY",
-    "INQUISITIVE",
-    "INNOVATION",
-    "CRAFT"
-  ];
-
   return (
-    <section ref={containerRef} className="py-24 md:py-32 bg-[#000000] text-soft-white relative z-10 flex min-h-screen items-center justify-center font-sans">
-      <div className="px-6 md:px-12 w-full max-w-7xl mx-auto flex flex-col items-center">
+    <section className="relative w-full flex font-sans">
 
-        <p className="text-sm tracking-[0.3em] font-mono text-white/50 mb-12 uppercase">
-          [ OUR DNA ]
-        </p>
-
-        <ul ref={wordsRef} className="flex flex-col items-center justify-center space-y-4">
-          {words.map((word, index) => (
-            <li
-              key={index}
-              className="text-[12vw] md:text-[8vw] font-black uppercase tracking-tighter leading-none"
-              style={{
-                color: 'transparent',
-                WebkitTextStroke: '2px rgba(255, 255, 255, 0.2)',
-                opacity: 0.3,
-                scale: 0.95
-              }}
-            >
-              {word}
-            </li>
-          ))}
-        </ul>
-
+      {/* LEFT PANEL: Sticky & Transparent — globe shows through */}
+      <div className="hidden md:flex w-1/2 sticky top-0 h-screen flex-col justify-center items-center bg-transparent">
+        <span className="text-[10px] tracking-[0.5em] font-mono text-white/15 uppercase">
+          OFFER
+        </span>
       </div>
+
+      {/* RIGHT PANEL: Individual glass cards over transparent background */}
+      <div className="w-full md:w-1/2 relative flex flex-col gap-6 p-6">
+        
+        {/* Ambient Glowing Diagonal Beam (same as menu) */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 -left-1/4 w-[80%] h-[150%] rotate-[32deg] bg-gradient-to-br from-[#cfff28]/10 via-[#345c59]/10 to-transparent blur-[120px]" />
+        </div>
+
+        {/* Cards */}
+        {services.map((service, index) => (
+          <div
+            key={service.id}
+            className="relative min-h-screen ios-glass rounded-[6px] p-12 md:p-16 lg:p-20 flex flex-col justify-between group"
+          >
+            {/* Top Row */}
+            <div className="flex justify-between items-start w-full">
+              <p className="max-w-xs text-base md:text-lg font-light leading-relaxed text-white/40">
+                {service.desc}
+              </p>
+              <div className="p-3 rounded-full border border-white/[0.08] group-hover:bg-neon-lime group-hover:border-neon-lime transition-all duration-300 cursor-pointer shrink-0 ml-8">
+                <ArrowUpRight
+                  size={18}
+                  className="text-white/30 group-hover:text-black group-hover:rotate-45 transition-all duration-300"
+                />
+              </div>
+            </div>
+
+            {/* Bottom Row: Diagonal Balance */}
+            <div className="flex justify-between items-end w-full">
+              <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-white/20 uppercase">
+                {service.label}
+              </span>
+              <h2
+                className="font-black tracking-tighter leading-[0.85] text-right text-white/80"
+                style={{ fontSize: 'clamp(4rem, 8vw, 10rem)' }}
+              >
+                {service.title}
+              </h2>
+            </div>
+
+            {/* Card Index */}
+            <span className="absolute top-12 right-16 text-[10px] font-mono text-white/10 tracking-widest">
+              0{index + 1}
+            </span>
+          </div>
+        ))}
+      </div>
+
     </section>
   );
 };

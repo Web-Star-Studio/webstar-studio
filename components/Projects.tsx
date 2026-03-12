@@ -24,13 +24,13 @@ const Projects: React.FC = () => {
   };
 
   const imageVariants = {
-    inactive: { scale: 1.25, grayscale: 1, brightness: 0.5 },
-    active: { scale: 1, grayscale: 0, brightness: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const } }
+    inactive: { scale: 1.25, filter: 'grayscale(1) brightness(0.5) blur(12px)' },
+    active: { scale: 1, filter: 'grayscale(0) brightness(1) blur(0px)', transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const } }
   };
 
   const overlayVariants = {
     inactive: { opacity: 0 },
-    active: { opacity: 1, transition: { duration: 0.5, delay: 0.3 } }
+    active: { opacity: 0, transition: { duration: 0.5, delay: 0.3 } }
   };
 
   const textVariants = {
@@ -63,7 +63,7 @@ const Projects: React.FC = () => {
             return (
               <motion.div
                 key={project.id}
-                className="group relative aspect-[4/3] overflow-hidden cursor-pointer border border-white/10"
+                className="group relative aspect-[4/3] overflow-hidden cursor-pointer border border-white/10 rounded-[4px]"
                 initial="inactive"
                 whileInView="active"
                 viewport={{ once: false, amount: 0.4 }} // Trigger when 40% visible
@@ -82,9 +82,8 @@ const Projects: React.FC = () => {
                   variants={imageVariants}
                 />
 
-                <motion.div
-                  className="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col justify-between p-8 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  variants={overlayVariants}
+                <div
+                  className="absolute inset-0 bg-[#000000]/40 flex flex-col justify-between p-8 z-30 opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-xl transition-all duration-500 rounded-[4px]"
                 >
                   <div className="flex justify-between items-start">
                     <span className="text-xs tracking-widest text-white/60">0{index + 1}</span>
@@ -100,7 +99,7 @@ const Projects: React.FC = () => {
                       {project.category}
                     </motion.p>
                   </div>
-                </motion.div>
+                </div>
               </motion.div>
             );
           })}

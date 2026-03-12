@@ -1,9 +1,33 @@
+'use client';
+
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const GlobeSection: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    if (!sectionRef.current) return;
+
+    ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: 'top top',
+      end: '+=100%', // Pin for 1 extra screen height
+      pin: true,
+      pinSpacing: true,
+      anticipatePin: 1,
+    });
+  }, { scope: sectionRef });
+
   return (
-    <section id="globe-trigger" className="relative w-full h-[200vh] bg-transparent font-sans">
+    <section ref={sectionRef} id="globe-trigger" className="relative w-full h-screen bg-transparent font-sans">
       
-      {/* HTML UI Layer Overlay - Sticky so it follows the user while the 3D Globe morphs */}
-      <div className="sticky top-0 h-screen w-full flex items-center justify-between container mx-auto px-6 pointer-events-none z-10">
+      {/* HTML UI Layer Overlay */}
+      <div className="h-screen w-full flex items-center justify-between container mx-auto px-6 pointer-events-none z-10">
         
         {/* Left Column: Title */}
         <div className="w-full md:w-1/2 mb-16 md:mb-0">

@@ -7,13 +7,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import BackgroundCanvas from '@/components/BackgroundCanvas';
 import Header from '../../components/Header';
 import Navigation from '../../components/Navigation';
+import CustomCursor from '../../components/CustomCursor';
+import Preloader from '../../components/Preloader';
 import Hero from '../../components/Hero';
 import Intro from '../../components/Intro';
+import SolutionsSection from '@/components/SolutionsSection';
 import Expertise from '../../components/Expertise';
+import HorizontalScroll from '../../components/HorizontalScroll';
 import Projects from '../../components/Projects';
 import Logos from '../../components/Logos';
-import News from '../../components/News';
-import StackedCards from '@/components/StackedCards';
 import GlobeSection from '@/components/GlobeSection';
 import Footer from '../../components/Footer';
 
@@ -45,6 +47,9 @@ export default function Home() {
       {/* UI Layer: Scrollable HTML content */}
       <div className="relative z-10 w-full font-sans overflow-x-hidden">
         
+        <Preloader />
+        <CustomCursor />
+
         {/* Core Introductory Block */}
         <Hero />
         
@@ -53,15 +58,15 @@ export default function Home() {
         
         {/* Narrative Flow */}
         <Intro />
+
+        {/* Transition Breather Space */}
+        <div className="relative w-full h-[50vh] bg-gradient-to-b from-[#000000] to-transparent z-10 pointer-events-none" />
+
+        <SolutionsSection />
         <Expertise />
+        <HorizontalScroll />
         <Projects />
         <Logos />
-        <News />
-        
-        {/* End-page Scroll Experience */}
-        <div id="stacked-cards-trigger" className="relative w-full">
-          <StackedCards />
-        </div>
         
         <Footer />
       </div>

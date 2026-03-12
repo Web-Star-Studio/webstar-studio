@@ -1,9 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslation } from 'react-i18next';
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const Intro: React.FC = () => {
   const { t } = useTranslation();
@@ -12,50 +15,61 @@ const Intro: React.FC = () => {
   const bgTextRef = useRef<HTMLHeadingElement>(null);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: '+=200%', // Scroll duration
-          pin: true,
-          scrub: 1,
-        }
-      });
+  useGSAP(() => {
+    if (!containerRef.current) return;
 
-      // 1. Massive Scale Shift for the background text
-      tl.to(bgTextRef.current, {
-        scale: 5,
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top top',
+        end: '+=200%', // Scroll duration
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1
+      }
+    });
+
+    // 1. Massive Scale Shift for the background text
+    tl.to(bgTextRef.current, {
+      scale: 5,
+      opacity: 0,
+      duration: 2,
+      ease: 'power2.inOut',
+    }, 0);
+
+    // 2. Elite-Level Inverted Mask Reveal
+    tl.fromTo(invertedLayerRef.current, {
+      clipPath: 'inset(100% 0% 0% 0%)', // Start fully clipped from the bottom
+    }, {
+      clipPath: 'inset(0% 0% 0% 0%)',   // Wipe up to fully reveal
+      duration: 1.5,
+      ease: 'power2.inOut',
+    }, 0.2); // Start revealing alongside background text scale
+
+    // 3. Fade in paragraph delayed
+    tl.fromTo(paragraphRef.current, {
+      opacity: 0,
+      y: 20,
+    }, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power2.out',
+    }, 1);
+
+    // 4. Cinematic Fade Out Transition
+    const foregroundContent = containerRef.current.querySelector('.z-10') as HTMLElement;
+    if (foregroundContent) {
+      tl.to(foregroundContent, {
         opacity: 0,
-        duration: 2,
-        ease: 'power2.inOut',
-      }, 0);
-
-      // 2. Elite-Level Inverted Mask Reveal
-      tl.fromTo(invertedLayerRef.current, {
-        clipPath: 'inset(100% 0% 0% 0%)', // Start fully clipped from the bottom
-      }, {
-        clipPath: 'inset(0% 0% 0% 0%)',   // Wipe up to fully reveal
-        duration: 1.5,
-        ease: 'power2.inOut',
-      }, 0.2); // Start revealing alongside background text scale
-
-      // 3. Fade in paragraph delayed
-      tl.fromTo(paragraphRef.current, {
-        opacity: 0,
-        y: 20,
-      }, {
-        opacity: 1,
-        y: 0,
+        filter: "blur(10px)",
+        y: -50,
         duration: 1,
-        ease: 'power2.out',
-      }, 1);
+        ease: "power2.inOut"
+      }, 2.5); // Starts half a second after the paragraph appears
+    }
 
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+  }, { scope: containerRef });
 
   const giantText = "REBORN";
   const revealHeadline = "REDEFINE THE EXPERIENCE";

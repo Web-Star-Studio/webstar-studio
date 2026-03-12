@@ -93,10 +93,10 @@ const HorizontalScroll: React.FC = () => {
     }, []);
 
     return (
-        <section ref={triggerRef} className="relative h-screen w-full overflow-hidden bg-white text-deep-space">
+        <section ref={triggerRef} className="relative h-screen w-full overflow-hidden text-white z-20 bg-black" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 50%, rgba(0,0,0,0.8) 100%)', backdropFilter: 'blur(60px) saturate(180%) brightness(1.1)', WebkitBackdropFilter: 'blur(60px) saturate(180%) brightness(1.1)', borderTop: '1px solid rgba(255,255,255,0.12)', borderBottom: '1px solid rgba(255,255,255,0.08)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.2), 0 0 80px rgba(207,255,40,0.03)' }}>
             <div className="absolute top-12 left-12 z-10 flex gap-4 items-center">
-                <span className="h-px w-12 bg-deep-space" />
-                <h2 className="text-sm font-bold tracking-widest uppercase">{t('projects.title')}</h2>
+                <span className="h-px w-12 bg-white/40" />
+                <h2 className="text-sm font-bold tracking-widest uppercase text-white/60">{t('projects.title')}</h2>
             </div>
 
             <div
@@ -105,21 +105,21 @@ const HorizontalScroll: React.FC = () => {
             >
                 {/* Intro Text */}
                 <div className="min-w-[40vw]">
-                    <h3 className="text-6xl md:text-8xl font-display font-bold leading-[0.9] text-deep-space mb-8">
+                    <h3 className="text-6xl md:text-8xl font-display font-bold leading-[0.9] text-white/90 mb-8">
                         DIGITAL <br />
                         <span className="inline-flex pt-2">
                             {"REALITIES".split('').map((char, index) => (
                                 <span key={index} className="relative inline-block">
                                     <span className="bg-layer absolute top-0 bottom-0 bg-neon-lime -z-10 opacity-0" style={{ left: '-0.05em', right: '-0.05em' }} />
                                     <span className="relative z-10 inline-block">
-                                        <span className="text-transparent stroke-text-dark">{char}</span>
-                                        <span className="text-layer absolute top-0 left-0 text-deep-space opacity-0" style={{ WebkitTextStroke: '0px' }}>{char}</span>
+                                        <span className="text-transparent stroke-text">{char}</span>
+                                        <span className="text-layer absolute top-0 left-0 text-white opacity-0" style={{ WebkitTextStroke: '0px' }}>{char}</span>
                                     </span>
                                 </span>
                             ))}
                         </span>
                     </h3>
-                    <p className="text-xl md:text-2xl font-light text-gray-600 max-w-md ml-24 font-editorial italic">
+                    <p className="text-xl md:text-2xl font-light text-white/40 max-w-md ml-24 font-editorial italic">
                         Exploring the boundaries between physical space and digital perception.
                     </p>
                 </div>
@@ -150,9 +150,9 @@ const HorizontalScroll: React.FC = () => {
                 {/* End Spacer */}
                 <div className="min-w-[20vw] h-full flex items-center justify-center">
                     <a href="#" className="flex gap-4 items-center group">
-                        <span className="text-4xl font-display font-bold group-hover:text-neon-lime transition-colors">VIEW ALL</span>
-                        <div className="p-4 rounded-full border border-deep-space group-hover:bg-neon-lime group-hover:border-neon-lime transition-all duration-300">
-                            <ArrowUpRight className="group-hover:rotate-45 transition-transform duration-300" />
+                        <span className="text-4xl font-display font-bold text-white/80 group-hover:text-neon-lime transition-colors">VIEW ALL</span>
+                        <div className="p-4 rounded-full border border-white/20 group-hover:bg-neon-lime group-hover:border-neon-lime transition-all duration-300">
+                            <ArrowUpRight className="text-white/60 group-hover:text-black group-hover:rotate-45 transition-all duration-300" />
                         </div>
                     </a>
                 </div>

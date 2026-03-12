@@ -24,9 +24,9 @@ const News: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group cursor-pointer"
+              className="group cursor-pointer ios-glass rounded-3xl p-6"
             >
-              <div className="aspect-[3/4] overflow-hidden mb-6 border border-white/10">
+              <div className="aspect-[3/4] overflow-hidden rounded-2xl mb-6">
                 <img
                   src={item.image}
                   alt={item.title}
