@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
@@ -59,8 +60,8 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isMenuOpen }) => {
         </div>
 
         <div className="flex h-full shrink-0 items-center border-r border-white/5 px-8 md:px-12">
-          <Link href="/" className="font-display text-lg font-bold tracking-[0.1em] text-white transition-colors duration-300 md:text-xl">
-            WEBSTAR
+          <Link href="/" className="block">
+            <Image src="/webstar-logo.svg" alt="Webstar" width={500} height={500} unoptimized className="w-[130px] h-[32px] brightness-0 invert opacity-95" style={{ objectFit: 'cover', objectPosition: 'center 46%' }} />
           </Link>
         </div>
 
