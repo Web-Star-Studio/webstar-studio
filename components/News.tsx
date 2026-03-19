@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight } from 'lucide-react';
@@ -26,11 +27,14 @@ const News: React.FC = () => {
               transition={{ delay: index * 0.1 }}
               className="group cursor-pointer ios-glass rounded-3xl p-6"
             >
-              <div className="aspect-[3/4] overflow-hidden rounded-2xl mb-6">
-                <img
+              <div className="aspect-[3/4] overflow-hidden rounded-2xl mb-6 relative">
+                <Image
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 opacity-40 group-hover:opacity-80 grayscale group-hover:grayscale-0 brightness-50 group-hover:brightness-100"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-all duration-700 group-hover:scale-105 opacity-40 group-hover:opacity-80 grayscale group-hover:grayscale-0 brightness-50 group-hover:brightness-100"
+                  loading="lazy"
                 />
               </div>
               <span className="text-xs tracking-widest text-neon-lime/60 mb-2 block group-hover:text-neon-lime transition-colors">{item.date}</span>

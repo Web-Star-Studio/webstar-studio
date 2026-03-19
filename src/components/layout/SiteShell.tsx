@@ -1,12 +1,16 @@
 'use client';
 
 import { ReactNode, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 
 import Header from '../../../components/Header';
 import Navigation from '../../../components/Navigation';
 import CustomCursor from '../../../components/CustomCursor';
-import BackgroundCanvas from '@/components/BackgroundCanvas';
+
+const BackgroundCanvas = dynamic(() => import('@/components/BackgroundCanvas'), {
+  ssr: false,
+});
 
 interface SiteShellProps {
   children: ReactNode;
@@ -18,7 +22,7 @@ export default function SiteShell({ children, withBackground = true, withCursor 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-black selection:bg-neon-lime selection:text-black">
+    <main className="relative min-h-screen overflow-x-hidden bg-transparent selection:bg-neon-lime selection:text-black">
       <div className="relative z-[9999]">
         <Header isMenuOpen={isMenuOpen} onMenuClick={() => setIsMenuOpen((prev) => !prev)} />
         <Navigation isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />

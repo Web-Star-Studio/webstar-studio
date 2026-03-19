@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useRef, useMemo, useEffect } from 'react';
-import { useFrame, useLoader } from '@react-three/fiber';
+import React, { useRef, useMemo, useEffect, useState } from 'react';
+import { useFrame } from '@react-three/fiber';
 import { Sphere } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
@@ -47,11 +47,15 @@ export default function CinematicGlobe() {
   // Create an array for GSAP to target multiple material instances at once
   const shellMaterialsRef = useRef<(THREE.MeshPhysicalMaterial | null)[]>([]);
 
-  // Load Earth map
-  const earthTexture = useLoader(
-    THREE.TextureLoader, 
-    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg'
-  );
+  // Load Earth map asynchronously (non-blocking so the rest of the scene renders immediately)
+  const [earthTexture, setEarthTexture] = useState<THREE.Texture | null>(null);
+  useEffect(() => {
+    const loader = new THREE.TextureLoader();
+    loader.load(
+      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg',
+      (texture) => setEarthTexture(texture),
+    );
+  }, []);
 
   const particlesPosition = useMemo(() => {
     return getFibonacciSpherePoints(60000, 2.5); // Particles are at 2.5
@@ -73,7 +77,7 @@ export default function CinematicGlobe() {
   // Custom Shader for the Continents
   const shaderArgs = useMemo(() => ({
     uniforms: {
-      globeTexture: { value: earthTexture },
+      globeTexture: { value: earthTexture ?? new THREE.Texture() },
       uOpacity: { value: 0.0 }, // Starts fully invisible!
     },
     vertexShader: `
@@ -114,103 +118,139 @@ export default function CinematicGlobe() {
     depthWrite: false, 
   }), [earthTexture]);
 
+  // Push the loaded texture into the existing shader material uniform
+  useEffect(() => {
+    if (earthTexture && particleShaderMaterialRef.current) {
+      particleShaderMaterialRef.current.uniforms.globeTexture.value = earthTexture;
+    }
+  }, [earthTexture]);
+
   useFrame((state, delta) => {
     if (masterGroupRef.current) {
       masterGroupRef.current.rotation.y += delta * 0.05;
     }
   });
 
-  // Master GSAP Sequence
+  // Master GSAP Sequence — polls for #globe-trigger since it may mount after the Canvas
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    
-    const triggerElement = document.getElementById('globe-trigger');
-    if (!triggerElement || !masterGroupRef.current || !particleShaderMaterialRef.current) return;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: triggerElement,
-        start: 'top bottom', 
-        end: 'top top',      
-        scrub: 1,
+    let cancelled = false;
+    let rafId: number | null = null;
+    let timeline: gsap.core.Timeline | null = null;
+    let attempts = 0;
+    const MAX_ATTEMPTS = 120; // ~2 seconds at 60fps
+
+    function trySetup() {
+      if (cancelled) return;
+      attempts++;
+
+      const triggerElement = document.getElementById('globe-trigger');
+      const masterGroup = masterGroupRef.current;
+      const particleShaderMaterial = particleShaderMaterialRef.current;
+
+      if (!triggerElement || !masterGroup || !particleShaderMaterial) {
+        if (attempts < MAX_ATTEMPTS) {
+          rafId = requestAnimationFrame(trySetup);
+          return;
+        }
+        return; // Give up after max attempts
       }
-    });
 
-    // 1. Scale up the Master Group and move it to the right
-    tl.fromTo(masterGroupRef.current.scale, 
-      { x: 0.4, y: 0.4, z: 0.4 }, 
-      { x: 2.2, y: 2.2, z: 2.2, ease: 'power2.inOut' }, 
-      0
-    );
-    tl.fromTo(masterGroupRef.current.position,
-      { x: 0 },
-      { x: 3.5, ease: 'power2.inOut' },
-      0
-    );
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: triggerElement,
+          start: 'top bottom',
+          end: 'top top',
+          scrub: 1,
+        }
+      });
+      timeline = tl;
 
-    // 2. Explode the Sliced Shell (Y-axis separation)
-    if (slice1Ref.current && slice2Ref.current && slice3Ref.current && slice4Ref.current) {
-      tl.to(slice1Ref.current.position, { y: 3.5, ease: 'power2.inOut' }, 0);
-      tl.to(slice2Ref.current.position, { y: 1.5, ease: 'power2.inOut' }, 0);
-      tl.to(slice3Ref.current.position, { y: -1.5, ease: 'power2.inOut' }, 0);
-      tl.to(slice4Ref.current.position, { y: -3.5, ease: 'power2.inOut' }, 0);
+      // 1. Scale up the Master Group and move it to the right
+      tl.fromTo(masterGroup.scale,
+        { x: 0.4, y: 0.4, z: 0.4 },
+        { x: 2.2, y: 2.2, z: 2.2, ease: 'power2.inOut' },
+        0
+      );
+      tl.fromTo(masterGroup.position,
+        { x: 0 },
+        { x: 3.5, ease: 'power2.inOut' },
+        0
+      );
 
-      tl.to([slice1Ref.current.rotation, slice4Ref.current.rotation], { y: Math.PI / 2, ease: 'power1.inOut' }, 0);
-      tl.to([slice2Ref.current.rotation, slice3Ref.current.rotation], { y: -Math.PI / 2, ease: 'power1.inOut' }, 0);
-    }
+      // 2. Explode the Sliced Shell (Y-axis separation)
+      if (slice1Ref.current && slice2Ref.current && slice3Ref.current && slice4Ref.current) {
+        tl.to(slice1Ref.current.position, { y: 3.5, ease: 'power2.inOut' }, 0);
+        tl.to(slice2Ref.current.position, { y: 1.5, ease: 'power2.inOut' }, 0);
+        tl.to(slice3Ref.current.position, { y: -1.5, ease: 'power2.inOut' }, 0);
+        tl.to(slice4Ref.current.position, { y: -3.5, ease: 'power2.inOut' }, 0);
 
-    // 3. Fade out the Shell Materials
-    const validMaterials = shellMaterialsRef.current.filter(Boolean);
-    if (validMaterials.length > 0) {
-      tl.to(validMaterials, {
-        opacity: 0,
+        tl.to([slice1Ref.current.rotation, slice4Ref.current.rotation], { y: Math.PI / 2, ease: 'power1.inOut' }, 0);
+        tl.to([slice2Ref.current.rotation, slice3Ref.current.rotation], { y: -Math.PI / 2, ease: 'power1.inOut' }, 0);
+      }
+
+      // 3. Fade out the Shell Materials
+      const validMaterials = shellMaterialsRef.current.filter(Boolean);
+      if (validMaterials.length > 0) {
+        tl.to(validMaterials, {
+          opacity: 0,
+          ease: 'power2.inOut'
+        }, 0);
+      }
+
+      // 4. Fade out the solid glowing core faster
+      if (solidSphereMaterialRef.current) {
+        tl.to(solidSphereMaterialRef.current, {
+          opacity: 0,
+          ease: 'power4.inOut',
+          duration: 0.15
+        }, 0);
+      }
+
+      // 5. Fade in the Particle Shader
+      tl.to(particleShaderMaterial.uniforms.uOpacity, {
+        value: 1,
         ease: 'power2.inOut'
       }, 0);
+
+      // 6. The "Glow Kick" Flash
+      if (flashLightRef.current) {
+        tl.to(flashLightRef.current, {
+          intensity: 200,
+          duration: 0.05,
+          ease: 'power4.out'
+        }, 0);
+
+        tl.to(flashLightRef.current, {
+          intensity: 0,
+          duration: 0.3,
+          ease: 'power2.inOut'
+        }, 0.05);
+      }
+
+      // 7. Fade out Background Stars
+      if (starsMaterialRef.current) {
+        tl.to(starsMaterialRef.current, {
+          opacity: 0,
+          ease: 'power2.inOut',
+          duration: 0.3
+        }, 0);
+      }
+
+      ScrollTrigger.refresh();
     }
 
-    // 4. Fade out the solid glowing core faster
-    if (solidSphereMaterialRef.current) {
-      tl.to(solidSphereMaterialRef.current, {
-        opacity: 0,
-        ease: 'power4.inOut',
-        duration: 0.15 // Dissipates almost immediately after the shell cracks
-      }, 0);
-    }
-
-    // 5. Fade in the Particle Shader (Awakening from inside)
-    tl.to(particleShaderMaterialRef.current.uniforms.uOpacity, {
-      value: 1,
-      ease: 'power2.inOut' 
-    }, 0);
-
-    // 6. The "Glow Kick" Flash 
-    // Spikes instantly when the scroll starts, then fades out, simulating escaping energy.
-    if (flashLightRef.current) {
-      tl.to(flashLightRef.current, {
-        intensity: 200,
-        duration: 0.05,
-        ease: 'power4.out'
-      }, 0);
-      
-      tl.to(flashLightRef.current, {
-        intensity: 0,
-        duration: 0.3,
-        ease: 'power2.inOut'
-      }, 0.05); // Starts decaying exactly when the spike finishes
-    }
-
-    // 7. Fade out Background Stars
-    if (starsMaterialRef.current) {
-      tl.to(starsMaterialRef.current, {
-        opacity: 0,
-        ease: 'power2.inOut',
-        duration: 0.3 // fade them out slowly during the start of the scroll
-      }, 0);
-    }
+    rafId = requestAnimationFrame(trySetup);
 
     return () => {
-      tl.kill();
-    }
+      cancelled = true;
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      if (timeline) {
+        timeline.scrollTrigger?.kill();
+        timeline.kill();
+      }
+    };
   }, []);
 
   return (

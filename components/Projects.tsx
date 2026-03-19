@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ArrowUpRight } from 'lucide-react';
@@ -75,12 +76,16 @@ const Projects: React.FC = () => {
                   variants={curtainVariants}
                 />
 
-                <motion.img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                  variants={imageVariants}
-                />
+                <motion.div className="w-full h-full" variants={imageVariants}>
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                    loading={index < 2 ? 'eager' : 'lazy'}
+                  />
+                </motion.div>
 
                 <div
                   className="absolute inset-0 bg-[#000000]/40 flex flex-col justify-between p-8 z-30 opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-xl transition-all duration-500 rounded-[4px]"

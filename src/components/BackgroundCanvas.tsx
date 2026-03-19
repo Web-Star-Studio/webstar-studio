@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
 import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing';
@@ -11,7 +12,9 @@ function BackgroundScene() {
     <>
       <color attach="background" args={['#050505']} />
       <ambientLight intensity={0.5} />
-      <Environment preset="studio" environmentIntensity={0.1} />
+      <Suspense fallback={null}>
+        <Environment preset="studio" environmentIntensity={0.1} />
+      </Suspense>
       <CinematicGlobe />
     </>
   );
@@ -19,10 +22,14 @@ function BackgroundScene() {
 
 export default function BackgroundCanvas() {
   return (
-    <div className="fixed top-0 left-0 w-full h-screen z-[-1]">
+    <div style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}>
       <Canvas
-        gl={{ antialias: true, alpha: false, toneMapping: THREE.NoToneMapping }}
+        gl={{ antialias: true, alpha: false }}
         camera={{ position: [0, 0, 8], fov: 45 }}
+        style={{ width: '100%', height: '100%' }}
+        onCreated={({ gl }) => {
+          gl.toneMapping = THREE.NoToneMapping;
+        }}
       >
         <BackgroundScene />
         <EffectComposer enableNormalPass={false}>

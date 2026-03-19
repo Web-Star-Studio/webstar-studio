@@ -9,18 +9,21 @@ const Preloader: React.FC = () => {
     const counterRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // Simulate loading progress
-        const timer = setInterval(() => {
-            setProgress((prev) => {
-                if (prev >= 100) {
-                    clearInterval(timer);
-                    return 100;
-                }
-                return prev + 1;
-            });
-        }, 20); // Adjust speed of counter
+        const duration = 1500;
+        const startTime = performance.now();
+        let rafId: number;
 
-        return () => clearInterval(timer);
+        const animate = (now: number) => {
+            const elapsed = now - startTime;
+            const next = Math.min(100, Math.floor((elapsed / duration) * 100));
+            setProgress(next);
+            if (next < 100) {
+                rafId = requestAnimationFrame(animate);
+            }
+        };
+
+        rafId = requestAnimationFrame(animate);
+        return () => cancelAnimationFrame(rafId);
     }, []);
 
     useEffect(() => {

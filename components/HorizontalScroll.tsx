@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ArrowUpRight } from 'lucide-react';
@@ -128,10 +129,13 @@ const HorizontalScroll: React.FC = () => {
                 {projects.map((project, index) => (
                     <div key={project.id} className="relative w-[80vw] md:w-[60vw] h-[60vh] md:h-[70vh] group cursor-pointer flex-shrink-0">
                         <div className="w-full h-full overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700">
-                            <img
+                            <Image
                                 src={project.image}
                                 alt={project.title}
-                                className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
+                                fill
+                                sizes="(max-width: 768px) 80vw, 60vw"
+                                className="object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
+                                loading="lazy"
                             />
                             <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
                         </div>

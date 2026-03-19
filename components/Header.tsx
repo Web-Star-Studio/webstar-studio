@@ -19,12 +19,16 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isMenuOpen }) => {
   const { scrollY } = useScroll();
   const { t, i18n } = useTranslation();
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => { setMounted(true); }, []);
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setIsScrolled(latest > 40);
   });
 
-  const currentLanguage = i18n.language || 'en';
+  const currentLanguage = mounted ? (i18n.language || 'en') : 'en';
+  const tt = mounted ? t : (key: string) => key;
 
   return (
     <motion.header
@@ -38,15 +42,15 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isMenuOpen }) => {
       <div className="flex h-10 w-full items-center justify-center border-b border-white/5 bg-white/[0.03] px-4">
         <p className="flex items-center gap-2 text-[#88d388]">
           <span className="text-[12px]">✧</span>
-          <span className="normal-case tracking-normal text-white/70">{t('header.banner.message')}</span>
-          <span className="font-medium">{t('header.banner.cta')}</span>
+          <span className="normal-case tracking-normal text-white/70">{tt('header.banner.message')}</span>
+          <span className="font-medium">{tt('header.banner.cta')}</span>
         </p>
       </div>
 
       <div className="flex h-[72px] w-full items-center border-b border-white/5">
         <div className="flex h-full w-16 shrink-0 items-center justify-center border-r border-white/5 md:w-24">
           <button
-            aria-label={t('header.menuToggle')}
+            aria-label={tt('header.menuToggle')}
             onClick={onMenuClick}
             className="group flex flex-col items-center justify-center gap-1.5 focus:outline-none lg:hidden"
           >
@@ -67,7 +71,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isMenuOpen }) => {
 
         <div className="hidden h-full shrink-0 items-center border-r border-white/5 px-8 text-white/70 transition-colors hover:text-white lg:flex">
           <Link href="/#projects" className="flex items-center gap-3">
-            {t('nav.story.label')}
+            {tt('nav.story.label')}
             <span className="mb-1 text-[14px] leading-none opacity-50 transition-opacity hover:opacity-100">⠿</span>
           </Link>
         </div>
@@ -84,7 +88,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isMenuOpen }) => {
                 href={item.href}
                 className={`transition-colors ${isActive ? 'text-neon-lime' : 'text-white/70 hover:text-white'}`}
               >
-                {t(item.labelKey)}
+                {tt(item.labelKey)}
               </Link>
             );
           })}
@@ -102,7 +106,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isMenuOpen }) => {
         </div>
 
         <div className="hidden h-full w-24 items-center justify-center border-x border-white/5 transition-colors hover:text-white md:flex md:w-32">
-          <Link href="/contact">{t('nav.contact')}</Link>
+          <Link href="/contact">{tt('nav.contact')}</Link>
         </div>
 
         <div className="hidden h-full w-16 shrink-0 lg:block md:w-24" />
@@ -112,7 +116,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, isMenuOpen }) => {
         <div className="hidden w-full items-center justify-center gap-8 border-b border-white/5 bg-black/30 px-8 py-2 text-[9px] tracking-[0.28em] text-white/45 lg:flex">
           {HOME_STORY_ANCHORS.map((item) => (
             <Link key={item.id} href={item.href} className="transition-colors hover:text-neon-lime">
-              {t(item.labelKey)}
+              {tt(item.labelKey)}
             </Link>
           ))}
         </div>
