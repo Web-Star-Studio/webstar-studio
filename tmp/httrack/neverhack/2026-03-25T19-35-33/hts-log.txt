@@ -1,0 +1,37 @@
+HTTrack3.49-2 launched on Wed, 25 Mar 2026 19:36:59 at https://neverhack.com/en +*.neverhack.com/*
+(httrack https://neverhack.com/en -O tmp/httrack/neverhack/2026-03-25T19-35-33 -n -%p +*.neverhack.com/* )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+19:39:21	Error: 	Exit requested by shell or user
+19:39:22	Warning: 	File not added due to mirror cancel: https://plausible.io/assets/images/twitter/JohnONolan.jpg
+19:39:22	Warning: 	Moved Permanently for https://neverhack.com/
+19:39:22	Warning: 	File has moved from https://neverhack.com/ to https://neverhack.com/en
+19:39:22	Warning: 	File not added due to mirror cancel: https://hub.neverhack.com/robots.txt
+19:39:22	Warning: 	File not added due to mirror cancel: https://nas.neverhack.com/robots.txt
+19:39:22	Warning: 	Retry after error -5 (error:00000001:lib(0)::reason(1)) at link https://nas.neverhack.com/ (from https://neverhack.com/en)
+19:39:22	Warning: 	Link https://neverhack.com/en/legals not scanned (follow robots meta tag)
+19:39:22	Warning: 	Link https://neverhack.com/en/legals/conditions/usage not scanned (follow robots meta tag)
+19:39:22	Warning: 	Retry after error -4 (No data (connection closed)) at link https://neverhack.com/en/sitemap (from https://neverhack.com/en)
+19:39:22	Warning: 	Retry after error -4 (No data (connection closed)) at link https://neverhack.com/en/compliance (from https://neverhack.com/en)
+19:39:22	Warning: 	Retry after error -4 (No data (connection closed)) at link https://neverhack.com/en/research/advise (from https://neverhack.com/en)
+19:39:22	Warning: 	Link https://plausible.io/login not scanned (follow robots meta tag)
+19:39:22	Warning: 	Link https://plausible.io/register not scanned (follow robots meta tag)
+19:39:22	Warning: 	Link https://plausible.io/login?return_to=%2Fsites not scanned (follow robots meta tag)
+19:39:22	Warning: 	Link https://plausible.io/plausible.io not scanned (follow robots meta tag)
+19:39:22	Warning: 	File not added due to mirror cancel: https://plausible.io/assets/images/twitter/JohnONolan.jpg
+19:39:22	Error: 	"mirror stopped by user" (-1) at link https://plausible.io/assets/images/twitter/JohnONolan.jpg (from https://plausible.io/)
+19:39:22	Warning: 	File not added due to mirror cancel: https://nas.neverhack.com/
+19:39:22	Error: 	"mirror stopped by user" (-1) at link https://nas.neverhack.com/ (from https://neverhack.com/en)
+19:39:22	Warning: 	File not added due to mirror cancel: https://neverhack.com/en/sitemap
+19:39:22	Error: 	"mirror stopped by user" (-1) at link https://neverhack.com/en/sitemap (from https://neverhack.com/en)
+19:39:22	Warning: 	File not added due to mirror cancel: https://neverhack.com/en/compliance
+19:39:22	Error: 	"mirror stopped by user" (-1) at link https://neverhack.com/en/compliance (from https://neverhack.com/en)
+19:39:22	Warning: 	File not added due to mirror cancel: https://neverhack.com/en/research/advise
+19:39:22	Error: 	"mirror stopped by user" (-1) at link https://neverhack.com/en/research/advise (from https://neverhack.com/en)
+
+HTTrack Website Copier/3.49-2 mirror complete in 2 minutes 23 seconds : 147 links scanned, 133 files written (36362154 bytes overall) [31733892 bytes received at 221915 bytes/sec], 6295882 bytes transferred using HTTP compression in 97 files, ratio 23%, 11.0 requests per connection
+(6 errors, 20 warnings, 0 messages)

@@ -18,3 +18,12 @@ View your app in AI Studio: https://ai.studio/apps/drive/1qzVEp6mllTTIEo2IbnNDAp
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Firecrawl Research Crawl
+
+Use the built-in Firecrawl script to capture a site into `tmp/firecrawl/...` for design and content analysis.
+
+- Neverhack crawl: `npm run crawl:neverhack`
+- Generic crawl: `npm run crawl:site -- --url https://example.com --label example`
+
+More details: [docs/firecrawl-neverhack.md](/Users/webstarstudiomac1/Documents/GitHub/webstar-studio/docs/firecrawl-neverhack.md)

@@ -8,601 +8,585 @@
     "news": "Insights",
     "contact": "Contact",
     "story": {
-      "label": "Story Map",
-      "globe": "Globe",
-      "intro": "Manifesto",
-      "services": "Systems",
-      "projects": "Portfolio"
+      "label": "Home narrative",
+      "globe": "Contact globe",
+      "intro": "Hero",
+      "services": "Values",
+      "projects": "Use cases"
     }
   },
   "header": {
     "menuToggle": "Open menu",
+    "menuShort": "Menu",
     "banner": {
-      "message": "International software house for digital ecosystems, applied AI, and design with purpose.",
-      "cta": "Explore structure"
+      "message": "Post-quantum cryptography: Gartner recommendations available with NEVERHACK",
+      "cta": "Access the report"
     }
   },
   "navigation": {
     "close": "Close menu",
-    "contactLabel": "Direct Contact",
+    "closeShort": "Close",
+    "label": "Navigation",
+    "contactLabel": "Direct contact",
     "contactBlock": {
-      "line1": "Praca do Derby, 149 — Recife, PE",
-      "line2": "55 Ranelagh, St Peters, Dublin 6",
-      "line3": "15+ years | 200+ projects | 8 countries"
+      "line1": "Recife / Dublin / Madrid",
+      "line2": "Strategy, product design, engineering, automation",
+      "line3": "Placeholder public system inspired by enterprise cybersecurity brands"
     }
   },
-  "intro": {
-    "backgroundWord": "REBORN",
-    "line1": "REDEFINE",
-    "line2": "THE SYSTEM",
-    "desc1": "Web Star Studio designs platforms, automations, and interfaces with international ambition. Data-led strategy, applied AI, and design with purpose operate here as one system."
-  },
-  "expertise": {
-    "title": "Capabilities",
-    "items": [
+  "footer": {
+    "statement": {
+      "eyebrow": "Public system",
+      "lines": [
+        "Your cyber",
+        "performance",
+        "partner"
+      ]
+    },
+    "desktopTop": {
+      "label": "Network"
+    },
+    "desktopBottom": {
+      "label": "Utility"
+    },
+    "utilityLinks": [
       {
-        "title": "Strategy",
-        "label": "BUSINESS & DIRECTION",
-        "desc": "Business diagnosis, positioning, and roadmap architecture before any execution begins."
+        "label": "Whistleblower",
+        "href": "/contact"
       },
       {
-        "title": "Design",
-        "label": "UI/UX SYSTEMS",
-        "desc": "Premium interfaces with clear hierarchy, strong narrative, and focus on trust, decision flow, and conversion."
+        "label": "Legal Notice",
+        "href": "/contact#legal"
       },
       {
-        "title": "Engineering",
-        "label": "SCALABLE DELIVERY",
-        "desc": "Front-end and full-stack implementation with strong performance budgets and resilient structure."
+        "label": "General Terms",
+        "href": "/services#delivery-model"
       },
       {
-        "title": "Automation",
-        "label": "APPLIED INTELLIGENCE",
-        "desc": "Intelligent workflows, integrations, and operating layers designed to remove friction and manual overhead."
+        "label": "Certifications",
+        "href": "/about#metrics"
       },
       {
-        "title": "Trust",
-        "label": "QUALITY & GOVERNANCE",
-        "desc": "Quality standards, accessibility, security, and visual consistency supporting every release."
+        "label": "Sitemap",
+        "href": "/"
       }
-    ]
+    ],
+    "description": "A full-spectrum cybersecurity group shaped into a denser public-facing system."
   },
-  "projects": {
-    "title": "Selected Systems",
-    "view_all": "View Portfolio"
-  },
-  "logos": {
-    "trusted_by": "Projects across multiple sectors"
-  },
-  "homeRoutes": {
-    "eyebrow": "Route Explorer",
-    "description": "The home page remains cinematic. Inner routes organise proof, context, and information with far more clarity."
-  },
-  "services": {
+  "home": {
     "hero": {
-      "eyebrow": "Services",
-      "title": "Digital architecture for predictable growth",
-      "description": "We build custom digital ecosystems that unify strategy, development, automation, and design inside one delivery model.",
-      "aside": "Built around diagnosis, senior execution, and measurable design intent.",
-      "statementStart": "Before we prototype,",
-      "statementAccent": "we question",
-      "statementEnd": ", explore, and craft ideas with intent.",
-      "scrollLabel": "Scroll to services"
+      "title": "Your cyber performance partner",
+      "description": "Let's make cybersecurity a strength for your business. We're here to help with everything from risk management and compliance to training and continuous monitoring, ensuring your growth is always protected.",
+      "rail": [
+        {
+          "label": "Coverage",
+          "value": "Risk, resilience, identity, response"
+        },
+        {
+          "label": "Delivery model",
+          "value": "Strategy, design, engineering, automation"
+        },
+        {
+          "label": "Readiness",
+          "value": "Enterprise-facing, multilingual, motion-led"
+        }
+      ],
+      "scrollLabel": "Scroll to discover"
     },
-    "offerings": {
-      "eyebrow": "What we build",
-      "title": "Workstreams",
-      "description": "Every engagement starts from real context, never a generic package.",
+    "useCases": {
+      "eyebrow": "Use cases",
+      "title": "Our responses tailored to your cyber challenges",
+      "description": "Boost your growth with our customized cybersecurity solutions. Whether it's managing a crisis, ensuring regulatory compliance, or enhancing your protections, our expertise will help you overcome every challenge.",
       "items": [
         {
-          "title": "Web platforms and systems",
-          "description": "Custom digital products focused on performance, scale, and operational clarity."
+          "category": "01",
+          "label": "Cyber risk assessment",
+          "title": "Cyber risk assessment",
+          "summary": "Wondering whether your cybersecurity strategy is hitting the mark?",
+          "ctaLabel": "Discover how we help you",
+          "ctaHref": "/services"
         },
         {
-          "title": "Process automation",
-          "description": "Integrations, workflows, and intelligent layers that reduce friction and increase execution speed."
+          "category": "02",
+          "label": "Test & compare",
+          "title": "Test & compare",
+          "summary": "How are your security measures up against competitors?",
+          "ctaLabel": "Discover how we help you",
+          "ctaHref": "/services"
         },
         {
-          "title": "AI applied to business",
-          "description": "Artificial intelligence implementations connected to operations, sales, service, and decision support."
+          "category": "03",
+          "label": "Cyber regulation",
+          "title": "Cyber regulation",
+          "summary": "Struggling with cybersecurity regulations?",
+          "ctaLabel": "Discover how we help you",
+          "ctaHref": "/about"
         },
         {
-          "title": "Strategic UI/UX",
-          "description": "Interfaces designed to convert better, guide better, and strengthen the brand with intent."
+          "category": "04",
+          "label": "Security concerns",
+          "title": "Security concerns",
+          "summary": "Worried about your IT system's security?",
+          "ctaLabel": "Discover how we help you",
+          "ctaHref": "/portfolio"
         },
         {
-          "title": "Digital ecosystem architecture",
-          "description": "Systems, tools, and infrastructure arranged to perform as one coherent environment."
-        },
-        {
-          "title": "Web and mobile delivery",
-          "description": "Cross-platform experiences built for usability, maintainability, and measurable business impact."
+          "category": "05",
+          "label": "Cyber crisis",
+          "title": "Cyber crisis",
+          "summary": "How prepared are you for a cyber crisis when operations are under pressure?",
+          "ctaLabel": "Discover how we help you",
+          "ctaHref": "/contact"
         }
       ]
     },
-    "breakdown": {
-      "navLabel": "Service map",
-      "indicatorLabel": "Active track",
-      "sectionLabel": "Architecture block",
-      "listLabel": "Execution modules",
-      "sections": [
-        {
-          "title": "Web platforms and systems",
-          "descriptionPrimary": "We design and build custom digital products where performance, usability, and operational clarity are treated as part of the same system.",
-          "descriptionSecondary": "The work usually spans information architecture, interface systems, technical foundations, and backend logic so the platform can scale without losing coherence.",
-          "subservices": [
-            "Platform discovery and scope definition",
-            "Custom dashboards and internal tools",
-            "Conversion-focused public interfaces",
-            "Performance-first frontend systems"
-          ]
-        },
-        {
-          "title": "Process automation",
-          "descriptionPrimary": "Automation projects remove repeated manual work, connect fragmented tools, and reduce execution friction across the company.",
-          "descriptionSecondary": "We map the bottlenecks first, then translate them into reliable flows, triggers, integrations, and exception handling that teams can actually trust.",
-          "subservices": [
-            "Workflow mapping and automation design",
-            "API integrations and orchestration layers",
-            "Operational alerts and approval logic",
-            "Connected back-office routines"
-          ]
-        },
-        {
-          "title": "AI applied to business",
-          "descriptionPrimary": "Applied AI should improve real decisions and operations, not sit beside them as a disconnected experiment.",
-          "descriptionSecondary": "We connect intelligent layers to service, sales, knowledge retrieval, internal analysis, and support workflows with clear boundaries and measurable outcomes.",
-          "subservices": [
-            "AI assistants for operations and support",
-            "Knowledge retrieval and search systems",
-            "Lead qualification and response logic",
-            "Decision-support workflows"
-          ]
-        },
-        {
-          "title": "Strategic UI/UX",
-          "descriptionPrimary": "Interface design is treated as architecture: how users move, how information is framed, and how confidence is built at each step.",
-          "descriptionSecondary": "We combine brand sensitivity with technical realism so design systems, prototypes, and shipped interfaces stay aligned from concept through launch.",
-          "subservices": [
-            "Experience mapping and user flows",
-            "Wireframes and interaction systems",
-            "Design systems and UI governance",
-            "High-fidelity product interfaces"
-          ]
-        },
-        {
-          "title": "Digital ecosystem architecture",
-          "descriptionPrimary": "When companies outgrow isolated tools, we design a clearer operating model where systems, infrastructure, and data behave as one environment.",
-          "descriptionSecondary": "That means defining ownership, integration logic, technical priorities, and future-ready foundations before complexity starts compounding.",
-          "subservices": [
-            "System audits and ecosystem diagnosis",
-            "Infrastructure and stack definition",
-            "Data flow and integration planning",
-            "Roadmaps for scalable digital operations"
-          ]
-        }
-      ]
-    },
-    "pillars": {
-      "eyebrow": "Three pillars",
-      "title": "The logic behind the work",
-      "description": "Webstar's value comes from combining these layers at the same level of rigor.",
+    "values": {
+      "eyebrow": "Values",
+      "title": "A solid expertise. For more than 40 years.",
+      "description": "A Neverhack-style value sequence that keeps the message simple, direct, and operationally credible.",
       "items": [
         {
-          "title": "Data-led strategy",
-          "description": "Before proposing, we diagnose the business, the audience, the market pressure, and the real signals that matter."
+          "title": "Solutions",
+          "description": "Tailored solutions designed and thought out to meet your security needs and perfectly adapt to your organization, regardless of its size.",
+          "detail": ""
         },
         {
-          "title": "Automation with AI",
-          "description": "We use applied intelligence to simplify operations, evolve workflows, and unlock consistent performance."
+          "title": "Centralized platform",
+          "description": "We created the Hub by NEVERHACK, a unique platform to facilitate your purchases, centralize your cyber tools, train your employees, or protect your data. One platform for all your solutions.",
+          "detail": "Create your organization and invite your collaborators for free."
         },
         {
-          "title": "Design with purpose",
-          "description": "Every interface decision is made to strengthen the brand, improve the experience, and move the right metrics."
+          "title": "Expertises",
+          "description": "Our highly qualified and certified experts ensure the highest security standards to meet all your specific needs.",
+          "detail": "Join our team for concrete and varied missions with high added value."
         }
       ]
     },
-    "delivery": {
-      "eyebrow": "Method",
-      "title": "How each project is structured",
-      "description": "Lean enough to move fast, rigorous enough to reduce risk.",
+    "metrics": {
+      "eyebrow": "Key numbers",
+      "title": "About NEVERHACK",
+      "description": "Driven by a passion for protection, NEVERHACK redefines cybersecurity through its expertise and innovation. Discover our journey, our values, and our commitment to security.",
+      "buttonLabel": "Discover NEVERHACK",
+      "buttonHref": "/about",
       "items": [
         {
-          "phase": "Phase 01",
-          "title": "Strategic diagnosis",
-          "description": "Business context, goals, bottlenecks, current stack, and repositioning or operational opportunities."
+          "label": "Collaborators",
+          "value": "1200+"
         },
         {
-          "phase": "Phase 02",
-          "title": "System definition",
-          "description": "Information architecture, interface narrative, technical scope, and implementation priorities."
+          "label": "Countries",
+          "value": "10"
         },
         {
-          "phase": "Phase 03",
-          "title": "Build and iterate",
-          "description": "Design and engineering running in parallel with performance, quality, and coherence checkpoints."
+          "label": "Cities",
+          "value": "26"
         },
         {
-          "phase": "Phase 04",
-          "title": "Launch and evolve",
-          "description": "A business-oriented release with the foundation ready for operation, learning, and future cycles."
+          "label": "organic growth",
+          "value": "16%"
+        },
+        {
+          "label": "Global SOC in operation",
+          "value": "24/7"
         }
       ]
     },
-    "faq": {
-      "eyebrow": "Common questions",
-      "title": "Important alignment before we begin",
-      "description": "Answers rewritten around the updated brand positioning.",
+    "chat": {
+      "eyebrow": "Global reach",
+      "title": "Hello from the world.",
+      "messages": [
+        {
+          "text": "Hello, I am Arthur Bataille, CEO of NEVERHACK."
+        },
+        {
+          "text": "Feel free to connect with the global NEVERHACK team, available worldwide to provide you with expert support wherever you are."
+        },
+        {
+          "text": "You can also discover our offers, browse our use cases, check our career opportunities, or simply explore the map next to it.",
+          "links": [
+            {
+              "label": "Offers",
+              "href": "/services"
+            },
+            {
+              "label": "Use cases",
+              "href": "/portfolio"
+            },
+            {
+              "label": "Careers",
+              "href": "/contact"
+            }
+          ]
+        },
+        {
+          "text": "Looking forward to seeing you soon."
+        }
+      ],
+      "buttonLabel": "Contact us",
+      "buttonHref": "/contact"
+    },
+    "news": {
+      "eyebrow": "Events and news",
+      "title": "Events and news",
+      "description": "A bordered grid of recent field signals, editorial proof, and topical cyber publications.",
+      "viewAllLabel": "View all",
+      "viewAllHref": "/portfolio",
       "items": [
         {
-          "question": "What kinds of projects do you take on?",
-          "answer": "We take on web platforms, custom systems, web and mobile applications, automation, integrations, UI/UX, and digital ecosystem architecture. Our scope stays focused on systems, experience, and technical operation."
+          "category": "Identity and Access",
+          "date": "December 12, 2025",
+          "title": "When One Appliance Isn't Enough: Lessons in High Availability an...",
+          "summary": "Read more",
+          "href": "/about"
         },
         {
-          "question": "What do you need to get started?",
-          "answer": "Business context, the primary objective, your current stack, relevant constraints, and any material that improves diagnosis. The proposal is shaped from that understanding."
+          "category": "Resilience Center",
+          "date": "December 2, 2025",
+          "title": "Cybersecurity trends 2026: challenges and protection strategy",
+          "summary": "Read more",
+          "href": "/services"
         },
         {
-          "question": "How long does a project take?",
-          "answer": "It depends on scope. Leaner engagements may take one to two weeks; fuller platforms often land between four and twelve weeks."
+          "category": "Secure File Transfer",
+          "date": "November 14, 2025",
+          "title": "When money knows no borders, security sets the limit",
+          "summary": "Read more",
+          "href": "/portfolio"
         },
         {
-          "question": "How does investment work?",
-          "answer": "Every project receives a custom investment model. We do not compete on price with generic shops; we optimize for value, technical clarity, and long-term impact."
+          "category": "Incident Response",
+          "date": "November 2025",
+          "title": "RANSOMWARE GhostRedirector CTI Report",
+          "summary": "Read more",
+          "href": "/contact"
+        },
+        {
+          "category": "NOC-MSP",
+          "date": "October 2025",
+          "title": "SOC 3.0: The evolution toward an intelligent and humanized...",
+          "summary": "Read more",
+          "href": "/services"
         }
       ]
-    },
-    "cta": {
-      "eyebrow": "Ready to structure",
-      "title": "Let's map the right system for your context",
-      "button": "Start the conversation"
     }
   },
   "about": {
     "hero": {
       "eyebrow": "About",
-      "title": "An international studio for digital development",
-      "description": "Web Star Studio operates as a sophisticated software house for companies that need smarter, clearer, and more sustainable digital ecosystems.",
-      "aside": "We work as development partners with technical depth, strategic range, and real ownership over execution."
+      "title": "Built for high-trust public systems",
+      "description": "This placeholder About page mirrors the Neverhack rhythm: oversized introduction, positioning block, values narrative, founder-style story section, global presence, and a final metrics rail."
     },
     "positioning": {
       "eyebrow": "Positioning",
-      "title": "Real growth needs systems, not improvisation",
-      "description": "Our structure combines diagnosis, build, and design under the same operating governance.",
-      "pitchLabel": "Institutional pitch",
-      "pitch": "We design platforms, systems, and automations that turn companies into more predictable growth machines, with global vision, local execution, and uncompromising consistency."
+      "title": "A public layer with the density of an operating model",
+      "description": "The goal is not just to look premium. The goal is to make expertise feel organized, measurable, and easy to navigate under pressure.",
+      "pitchLabel": "Core principle",
+      "pitch": "We design public experiences that behave like controlled environments: cinematic where needed, utility-heavy where trust depends on it."
     },
-    "mission": {
-      "title": "Mission",
-      "description": "Turn companies into more predictable growth engines through intelligent digital ecosystems."
-    },
-    "vision": {
-      "title": "Vision",
-      "description": "Become a global reference for companies seeking digital relevance, technical sophistication, and sustainable growth."
-    },
-    "promise": {
-      "title": "Commitment",
-      "description": "Deliver with clarity, ownership, and quality without diluting the brand."
-    },
-    "metrics": {
-      "items": [
-        { "label": "International experience", "value": "15+ years" },
-        { "label": "Delivered projects", "value": "200+" },
-        { "label": "Countries served", "value": "8" },
-        { "label": "Operating model", "value": "E2E" }
-      ]
+    "story": {
+      "eyebrow": "Leadership signal",
+      "title": "Storytelling is strongest when structure does most of the persuasion",
+      "description": "This block stands in for a founder or institutional story, using a strong image panel and a dense text panel in the same way Neverhack stages internal credibility.",
+      "role": "Strategic direction",
+      "name": "Public System Lead",
+      "bio": "We treat the public surface as part of the operating environment. Navigation, proof, editorial rhythm, and contact architecture all need to feel like one integrated decision system."
     },
     "values": {
-      "eyebrow": "Core values",
-      "title": "How we run the work",
-      "description": "Consistency comes from principles, not improvisation.",
+      "eyebrow": "Operating values",
+      "title": "Four values that shape how the public surface behaves",
+      "description": "The About page keeps the same value narrative language as the homepage, but slows it down into longer explanations.",
       "items": [
         {
-          "title": "Intentional disruption",
-          "description": "We do not deliver the obvious. We challenge assumptions and open more ambitious paths."
+          "title": "Controlled pace",
+          "description": "Every route should feel calm, intentional, and sequenced. Big type, clear anchors, and structured reveals should lead the user instead of competing for attention."
         },
         {
-          "title": "Technical excellence",
-          "description": "Quality is an obligation. Every delivery should reflect strong standards in both technology and design."
+          "title": "Institutional clarity",
+          "description": "Credibility should come from rhythm, language, and information hierarchy rather than generic superlatives or oversized claims."
         },
         {
-          "title": "Applied intelligence",
-          "description": "AI and automation only matter when they solve real problems and improve business outcomes."
+          "title": "Visible proof",
+          "description": "Metrics, case structures, legal links, and route continuity should always remain close to the surface."
         },
         {
-          "title": "Strategic partnership",
-          "description": "We do not operate as a transactional vendor. We stay connected to the business objective."
-        },
-        {
-          "title": "Global vision, local execution",
-          "description": "International experience paired with precise reading of each company's reality."
-        },
-        {
-          "title": "Transparency",
-          "description": "Clear communication, defined ownership, and accountability for what gets aligned."
+          "title": "System continuity",
+          "description": "The homepage and inner pages should feel like one platform, not like separate campaign experiences."
         }
-      ]
-    },
-    "founder": {
-      "eyebrow": "Leadership",
-      "title": "Strategic direction with multidisciplinary depth",
-      "description": "Webstar is led by a perspective that connects business, technology, and practical execution.",
-      "role": "Founder and Executive Director",
-      "name": "Felipe Antunes",
-      "bio": "Felipe Antunes leads Web Star Studio with more than 15 years of international experience in digital platforms, automation, and business-facing artificial intelligence. His background in Law, Business Administration, and an MBA in AI for Business gives the company a rare blend of technical and strategic judgment.",
-      "credentialsLabel": "Selected credentials",
-      "credentials": [
-        "Law",
-        "Business Administration",
-        "MBA in AI for Business",
-        "IBA co-founder",
-        "Experience across 8 countries"
       ]
     },
     "presence": {
       "eyebrow": "Presence",
-      "title": "International structure, local reading",
-      "description": "We operate through hubs and remote specialist cells to stay strategically close and operationally flexible.",
-      "items": [
-        { "city": "Recife", "detail": "Base for leadership, strategy, and product direction." },
-        { "city": "Dublin", "detail": "International bridge for partnerships and European business articulation." },
-        { "city": "Sao Paulo", "detail": "Access point to enterprise operations and growth environments." },
-        { "city": "Remote cells", "detail": "Distributed specialists assembled according to each project's real needs." }
-      ]
-    },
-    "testimonials": {
-      "eyebrow": "Proof",
-      "title": "Trust built through delivery",
-      "description": "A small selection of feedback that reinforces clarity, speed, and execution quality.",
+      "title": "Designed to read as an international, enterprise-capable system",
+      "description": "This section is a placeholder for regional presence and cross-market capability.",
       "items": [
         {
-          "quote": "An incredible experience. They understood the brand vision and delivered a website that truly reflects our values and goals.",
-          "author": "Thays Zancanaro"
+          "city": "Recife",
+          "detail": "Product direction, engineering systems, automation design, and multilingual delivery planning."
         },
         {
-          "quote": "Excellent results, creative and professional team, very attentive throughout the process. Everything felt deeply aligned with what we needed.",
-          "author": "Thyago Cortez"
+          "city": "Dublin",
+          "detail": "Enterprise-facing narrative, growth positioning, and route architecture for international audiences."
         },
         {
-          "quote": "Attentive, fast, and patient from start to finish. The delivery came in ahead of schedule and with a very high standard of quality.",
-          "author": "Taniana Perasolo"
+          "city": "Madrid",
+          "detail": "Campaign-grade presentation, proof packaging, and local-market trust adaptation."
         }
       ]
+    },
+    "metrics": {
+      "eyebrow": "Signals",
+      "items": [
+        {
+          "label": "Active route models",
+          "value": "05"
+        },
+        {
+          "label": "Public sections rebuilt",
+          "value": "28"
+        },
+        {
+          "label": "Shared design tokens",
+          "value": "120+"
+        },
+        {
+          "label": "Placeholder proof blocks",
+          "value": "36"
+        }
+      ]
+    }
+  },
+  "services": {
+    "hero": {
+      "eyebrow": "Services",
+      "title": "Structured service architecture for enterprise trust",
+      "description": "This page mirrors the Neverhack approach to offers and use cases: large entry hero, chapter rail, sticky service detail, supporting proof blocks, and FAQ."
+    },
+    "railEyebrow": "Service map",
+    "tracks": [
+      {
+        "title": "Governance and cyber strategy",
+        "summary": "Strategic diagnosis, operating-model alignment, control mapping, and board-facing visibility.",
+        "modules": [
+          "Risk program framing",
+          "Decision model alignment",
+          "Maturity roadmap design",
+          "Executive reporting logic"
+        ]
+      },
+      {
+        "title": "Identity and access architecture",
+        "summary": "Identity posture, privilege design, approvals, lifecycle controls, and operational access trust.",
+        "modules": [
+          "Identity landscape review",
+          "Privilege sequencing",
+          "Lifecycle policy design",
+          "Approval flow hardening"
+        ]
+      },
+      {
+        "title": "Resilience and incident readiness",
+        "summary": "Preparedness for disruption across response, recovery, crisis roles, and continuity structure.",
+        "modules": [
+          "Incident playbook design",
+          "Recovery path mapping",
+          "Command structure alignment",
+          "Continuity readiness reviews"
+        ]
+      },
+      {
+        "title": "Exposure and third-party control",
+        "summary": "External dependencies, attack surface, supplier visibility, and follow-through governance.",
+        "modules": [
+          "Supplier exposure framing",
+          "External risk workflows",
+          "Dependency criticality mapping",
+          "Escalation and remediation loops"
+        ]
+      }
+    ],
+    "proof": {
+      "eyebrow": "Proof blocks",
+      "title": "Every service chapter should feel connected to a bigger operating system",
+      "description": "A Neverhack-style public service page needs directional framing, modular lists, and visible continuity into adjacent routes."
+    },
+    "pillars": {
+      "eyebrow": "Delivery logic",
+      "title": "Three pillars behind the service architecture",
+      "items": [
+        {
+          "title": "Diagnosis first",
+          "description": "We start from current-state pressure, not from a pre-boxed package."
+        },
+        {
+          "title": "System continuity",
+          "description": "Offers, use cases, and proof blocks should reinforce one another instead of living as separate campaigns."
+        },
+        {
+          "title": "Decision usefulness",
+          "description": "The service page should help someone decide whether the model fits, not just admire the brand."
+        }
+      ]
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Questions that help the route feel credible",
+      "items": [
+        {
+          "question": "What is this page proving?",
+          "answer": "That a service route can behave like a structured operating environment instead of a generic capabilities list."
+        },
+        {
+          "question": "Why use a sticky chapter model?",
+          "answer": "Because it slows the reading pace, keeps the user oriented, and makes each service block feel like a deliberate module."
+        },
+        {
+          "question": "Is this final copy?",
+          "answer": "No. This is English-first placeholder content designed to stabilize layout, pacing, and interaction before final messaging."
+        }
+      ]
+    },
+    "cta": {
+      "eyebrow": "Next move",
+      "title": "Carry the service logic into contact and proof",
+      "button": "Move to contact"
     }
   },
   "portfolio": {
     "hero": {
       "eyebrow": "Portfolio",
-      "title": "Proof organised by context, sector, and outcome",
-      "description": "We selected projects that show Webstar's range without falling into empty spectacle. Each entry is a compact read on strategy, technical build, and purposeful interface design.",
-      "aside": "Static curation in this phase, structured to evolve into a dynamic layer later."
-    },
-    "metrics": {
-      "items": [
-        { "label": "Curated projects", "value": "8" },
-        { "label": "Sectors", "value": "7" },
-        { "label": "Countries", "value": "3+" },
-        { "label": "Focus", "value": "Clarity + performance" }
-      ]
-    },
-    "featured": {
-      "eyebrow": "Featured",
-      "title": "One project to open the conversation",
-      "description": "The strongest example is not always the loudest one. Here we prioritise alignment between interface, system, and business goal.",
-      "visit": "Visit project"
+      "title": "Use cases, campaigns, and structured proof",
+      "description": "This route adopts a Neverhack-like editorial portfolio language: large hero, utility filters, strong bordered listings, and case rhythm instead of a gallery feel."
     },
     "filters": {
       "all": "All"
     },
-    "grid": {
-      "eyebrow": "Case map",
-      "title": "A more useful read than a random visual mosaic",
-      "description": "Filter by sector and browse the work with more intention.",
-      "visit": "Open site"
-    },
-    "cta": {
-      "eyebrow": "Your project here",
-      "title": "If you need structure, clarity, and a more sophisticated execution model, let's talk.",
-      "button": "Talk to Webstar"
-    }
-  },
-  "careers": {
-    "hero": {
-      "eyebrow": "Careers",
-      "title": "Build ambitious systems with a high standard of craft",
-      "description": "We look for strategists, designers, and engineers who value depth, ownership, and clarity of execution.",
-      "aside": "A team shaped by quality, constant curiosity, and international ambition."
-    },
-    "manifesto": {
-      "eyebrow": "Manifesto",
-      "text": "High standards. Clear ownership. Constant curiosity. We build real systems for real companies without sacrificing visual sophistication or technical depth."
-    },
-    "benefits": {
-      "eyebrow": "Work environment",
-      "title": "A structure built for sustainable growth",
-      "subtitle": "Rituals, mentorship, and autonomy designed for long-term evolution.",
-      "items": [
-        {
-          "title": "Time for deep craft",
-          "detail": "Space for exploration, refinement, and meaningful improvement rather than rushed output."
-        },
-        {
-          "title": "Growth paths",
-          "detail": "Mentorship, structured feedback, and progression guided by impact and technical mastery."
-        },
-        {
-          "title": "Flexible model",
-          "detail": "Hybrid and remote collaboration with clear rituals, solid ownership, and strong async communication."
-        },
-        {
-          "title": "Sustainable pace",
-          "detail": "Long-range performance matters more than burnout cycles and improvisation."
-        }
-      ]
-    },
-    "process": {
-      "eyebrow": "Process",
-      "title": "How we evaluate fit",
-      "description": "We look for a real match between repertoire, decision-making, and collaboration style.",
-      "items": [
-        {
-          "step": "Step 01",
-          "title": "Context and repertoire",
-          "description": "A conversation about trajectory, references, decision-making, and work principles."
-        },
-        {
-          "step": "Step 02",
-          "title": "Exercise with realism",
-          "description": "A short scope that still mirrors the way we think about product, interface, and execution."
-        },
-        {
-          "step": "Step 03",
-          "title": "Mutual calibration",
-          "description": "Final alignment around expected impact, pace, and growth direction."
-        }
-      ]
-    },
-    "cta": {
-      "eyebrow": "Talent network",
-      "title": "If your profile fits this kind of build, share your context.",
-      "button": "Send your information"
-    }
-  },
-  "newsPage": {
-    "hero": {
-      "eyebrow": "Insights",
-      "title": "Notes, case studies, and signals from our operation",
-      "description": "An editorial stream designed to show how we think about digital systems, product decisions, engineering, and growth with greater clarity.",
-      "aside": "No empty content noise. Only material that helps explain how we structure the work."
-    },
     "featured": {
-      "eyebrow": "Featured story",
-      "title": "One deeper slice",
-      "description": "The featured entry reflects the level of narrative and precision we want to expand over time.",
-      "readStory": "Read story"
-    },
-    "filters": {
-      "label": "Categories",
-      "all": "All"
+      "eyebrow": "Featured case"
     },
     "grid": {
-      "title": "Editorial archive",
-      "description": "A compact collection of case studies, engineering notes, and strategic observations."
+      "eyebrow": "Case list",
+      "title": "Proof archive",
+      "description": "A filtered, editorial list of placeholder cases designed to feel closer to a campaign and use-case archive than a creative studio gallery.",
+      "visit": "Open case"
     },
-    "card": {
-      "read": "Read"
-    }
-  },
-  "newsArticle": {
-    "back": "Back to insights",
-    "tags": "Topics",
-    "relatedTitle": "Related reading",
-    "readMore": "Read more"
+    "cases": [
+      {
+        "slug": "identity-operating-model",
+        "title": "Identity operating model",
+        "summary": "A placeholder enterprise case focused on identity complexity, privilege visibility, and decision-ready access governance.",
+        "sector": "Identity",
+        "country": "Spain",
+        "website": "/services"
+      },
+      {
+        "slug": "resilience-command-layer",
+        "title": "Resilience command layer",
+        "summary": "A placeholder case about continuity posture, incident sequencing, and operational recovery clarity.",
+        "sector": "Resilience",
+        "country": "Ireland",
+        "website": "/about"
+      },
+      {
+        "slug": "third-party-risk-map",
+        "title": "Third-party risk map",
+        "summary": "A placeholder case about supplier exposure, critical dependencies, and visible external risk prioritization.",
+        "sector": "Exposure",
+        "country": "Brazil",
+        "website": "/contact"
+      },
+      {
+        "slug": "board-risk-dashboard",
+        "title": "Board risk dashboard",
+        "summary": "A placeholder case about turning cyber noise into executive-facing signals, thresholds, and decision pathways.",
+        "sector": "Governance",
+        "country": "United Kingdom",
+        "website": "/services"
+      }
+    ]
   },
   "contact": {
     "hero": {
       "eyebrow": "Contact",
-      "title": "Start a conversation with clear context and ambition",
-      "description": "Share what your company needs to rebuild, accelerate, or structure. We reply with strategic reading, not an automated sales script.",
-      "aside": "Best suited for companies looking for system thinking, technical depth, and more mature execution."
+      "title": "Move from exploration to a guided conversation",
+      "description": "The contact page keeps the public rhythm intact: oversized hero, trust signals, structured channels, staged form flow, offices, and legal utility."
     },
     "trust": {
       "items": [
-        { "label": "Initial reply", "value": "24 business hours" },
-        { "label": "Review", "value": "Senior-led" },
-        { "label": "Model", "value": "Custom scope" },
-        { "label": "Focus", "value": "Web, AI, automation" }
+        {
+          "label": "Response model",
+          "value": "Structured"
+        },
+        {
+          "label": "First-pass scope",
+          "value": "Public routes"
+        },
+        {
+          "label": "Language rollout",
+          "value": "English first"
+        },
+        {
+          "label": "Interaction style",
+          "value": "Utility-led"
+        }
       ]
     },
+    "channels": {
+      "email": {
+        "title": "Email",
+        "detail": "Use this for direct, high-context project notes and operational briefings."
+      },
+      "scope": {
+        "title": "Scope",
+        "detail": "Share the route, the audience, the pressure point, and the expected outcome."
+      },
+      "reply": {
+        "title": "Reply",
+        "detail": "The first answer should clarify fit, next steps, and the right shape of conversation."
+      }
+    },
     "formBlock": {
-      "eyebrow": "Initial brief",
-      "title": "Bring the project context",
-      "description": "The better the context, the more precise the direction we can suggest."
+      "eyebrow": "Conversation layer",
+      "title": "A two-step form that feels staged, not generic",
+      "description": "The contact flow remains simple but should inherit the same typography, borders, and pacing as the rest of the site."
     },
     "form": {
       "name": "Name",
       "email": "Email",
       "company": "Company",
       "message": "Project context",
-      "submit": "Send request",
-      "sending": "Sending",
-      "success": "Message received. This flow still uses a mock handler and will be connected to the API next.",
-      "mockNotice": "Frontend flow for now. API integration will be connected in this submit handler.",
+      "submit": "Start the conversation",
+      "continue": "Continue",
+      "success": "Your message entered the system. We can now continue with a sharper, more useful conversation.",
       "errors": {
-        "name": "Please tell us your name.",
-        "email": "Please enter a valid email.",
-        "message": "Add at least 15 characters of context."
-      }
-    },
-    "channels": {
-      "email": {
-        "title": "Primary channel",
-        "detail": "hello@webstar.studio"
-      },
-      "scope": {
-        "title": "Ideal scope",
-        "detail": "Platforms, automation, applied AI, strategic UI/UX, and custom digital systems."
-      },
-      "reply": {
-        "title": "Reply window",
-        "detail": "Initial response within 24 business hours, with no automated sales loop."
+        "name": "Please add your name.",
+        "email": "Please provide a valid email address.",
+        "message": "Please share at least a short project context."
       }
     },
     "offices": {
-      "eyebrow": "Institutional base",
-      "title": "Physical presence and legal structure",
-      "description": "An international software house with operations across strategic hubs.",
+      "eyebrow": "Presence",
+      "title": "Three placeholder points of presence",
+      "description": "A utility-heavy office block keeps the contact page feeling operational and internationally grounded.",
       "items": [
         {
-          "title": "Brazil",
-          "detail": "Praca do Derby, 149 — Derby, 52010-140, Recife - PE"
+          "title": "Recife",
+          "detail": "Strategy, product systems, and implementation direction."
         },
         {
-          "title": "Ireland",
-          "detail": "55 Ranelagh, St Peters, Dublin 6, Dublin — Leinster"
+          "title": "Dublin",
+          "detail": "Enterprise narrative and public route architecture."
+        },
+        {
+          "title": "Madrid",
+          "detail": "Regional rollout and campaign-grade proof packaging."
         }
       ]
     },
     "legal": {
-      "eyebrow": "Legal data",
-      "legalName": "Web Star Studio Desenvolvimento de Software LTDA",
-      "cnpj": "CNPJ: 57.717.768/0001-06",
-      "note": "Every inquiry is reviewed by senior leadership before any commercial direction is suggested."
+      "eyebrow": "Legal utility",
+      "legalName": "Webstar Studio Public Placeholder Ltd.",
+      "cnpj": "Registration placeholder / English-first rollout",
+      "note": "This first pass keeps legal-style utility visible so the route remains trustworthy even before production copy is finalized."
     }
-  },
-  "footer": {
-    "companyLabel": "Web Star Studio",
-    "statement": "Sophisticated digital systems for companies that need more intelligence, clarity, and consistency in the way they grow.",
-    "newsletter": "Follow Webstar across social and editorial channels to receive our weekly insights.",
-    "cta": {
-      "line1": "Let's",
-      "line2": "build",
-      "line3": "together.",
-      "button": "Start a conversation"
-    },
-    "address_label": "Addresses",
-    "contact_label": "Institutional",
-    "socialLabel": "Social",
-    "legalLabel": "Explore",
-    "contactCard": {
-      "title": "Contact Info"
-    },
-    "careersCopy": "Join our team and help design ambitious digital systems with clarity and craft.",
-    "careersLink": "Explore careers",
-    "email": "hello@webstar.studio",
-    "legalName": "Web Star Studio Desenvolvimento de Software LTDA",
-    "cnpj": "CNPJ 57.717.768/0001-06",
-    "offices": {
-      "brazil": {
-        "label": "Brazil",
-        "value": "Praca do Derby, 149 — Derby, 52010-140, Recife - PE"
-      },
-      "ireland": {
-        "label": "Ireland",
-        "value": "55 Ranelagh, St Peters, Dublin 6, Dublin — Leinster"
-      }
-    },
-    "copyright": "© {{year}} WEB STAR STUDIO. ALL RIGHTS RESERVED.",
-    "established": "Since 2011"
   }
 }

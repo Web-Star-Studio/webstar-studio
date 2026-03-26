@@ -9,8 +9,8 @@ export const PRIMARY_NAV_ITEMS: NavItem[] = [
 ];
 
 export const HOME_STORY_ANCHORS: NavItem[] = [
-  { id: 'story-globe', labelKey: 'nav.story.globe', href: '/#globe-trigger', hash: 'globe-trigger' },
-  { id: 'story-intro', labelKey: 'nav.story.intro', href: '/#about', hash: 'about' },
-  { id: 'story-services', labelKey: 'nav.story.services', href: '/#services-overview', hash: 'services-overview' },
-  { id: 'story-projects', labelKey: 'nav.story.projects', href: '/#projects', hash: 'projects' },
+  { id: 'story-hero', labelKey: 'nav.story.intro', href: '/#home-hero', hash: 'home-hero' },
+  { id: 'story-use-cases', labelKey: 'nav.story.projects', href: '/#home-use-cases', hash: 'home-use-cases' },
+  { id: 'story-values', labelKey: 'nav.story.services', href: '/#home-values', hash: 'home-values' },
+  { id: 'story-globe', labelKey: 'nav.story.globe', href: '/#home-contact', hash: 'home-contact' },
 ];

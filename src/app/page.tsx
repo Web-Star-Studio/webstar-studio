@@ -1,36 +1,24 @@
 'use client';
 
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
 import SiteShell from '@/components/layout/SiteShell';
-import Preloader from '../../components/Preloader';
-import Hero from '../../components/Hero';
-import GlobeSection from '@/components/GlobeSection';
-import Intro from '../../components/Intro';
-import SolutionsSection from '@/components/SolutionsSection';
-import StatementBridge from '../../components/StatementBridge';
-import Expertise from '../../components/Expertise';
-import HorizontalScroll from '../../components/HorizontalScroll';
-import Logos from '../../components/Logos';
 import Footer from '../../components/Footer';
-
-gsap.registerPlugin(ScrollTrigger);
+import HomeChatContact from '@/components/home/HomeChatContact';
+import HomeHero from '@/components/home/HomeHero';
+import HomeKeyNumbers from '@/components/home/HomeKeyNumbers';
+import HomeNewsGrid from '@/components/home/HomeNewsGrid';
+import HomeUseCases from '@/components/home/HomeUseCases';
+import HomeValues from '@/components/home/HomeValues';
 
 export default function Home() {
   return (
-    <SiteShell withBackground withCursor>
-      <Preloader />
-
+    <SiteShell>
       <div className="relative z-10 w-full overflow-x-hidden font-sans">
-        <Hero />
-        <GlobeSection />
-        <Intro />
-        <StatementBridge />
-        <SolutionsSection />
-        <Expertise />
-        <HorizontalScroll />
-        <Logos />
+        <HomeHero />
+        <HomeUseCases />
+        <HomeValues />
+        <HomeKeyNumbers />
+        <HomeChatContact />
+        <HomeNewsGrid />
         <Footer />
       </div>
     </SiteShell>

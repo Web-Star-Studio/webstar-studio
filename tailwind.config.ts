@@ -8,7 +8,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-space-grotesk)', 'sans-serif'],
+        sans: ['var(--font-roobert)', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'monospace'],
         display: ['var(--font-syne)', 'sans-serif'],
         serif: ['var(--font-cormorant)', 'serif'],
         oswald: ['var(--font-oswald)', 'sans-serif'],
@@ -20,7 +21,8 @@ const config: Config = {
         mega: '0.5em',
       },
       colors: {
-        'neon-lime': '#cfff28',
+        'neon-lime': '#6210CC',
+        'electric-violet': '#6210CC',
         'deep-space': '#000000',
         'soft-white': '#f3f8f0',
         'lavender-mist': '#d2c5ff',

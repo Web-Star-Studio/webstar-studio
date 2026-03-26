@@ -24,7 +24,7 @@ export default function BackgroundCanvas() {
   return (
     <div style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}>
       <Canvas
-        gl={{ antialias: true, alpha: false }}
+        gl={{ antialias: false, alpha: false }}
         camera={{ position: [0, 0, 8], fov: 45 }}
         style={{ width: '100%', height: '100%' }}
         onCreated={({ gl }) => {
@@ -33,7 +33,7 @@ export default function BackgroundCanvas() {
       >
         <BackgroundScene />
         <EffectComposer enableNormalPass={false}>
-          <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.9} mipmapBlur intensity={2.5} />
+          <Bloom luminanceThreshold={2} luminanceSmoothing={0.9} mipmapBlur intensity={1.5} />
           <Vignette eskil={false} offset={0.1} darkness={1.1} />
         </EffectComposer>
       </Canvas>

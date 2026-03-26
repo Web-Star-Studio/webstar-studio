@@ -1,9 +1,49 @@
 import type { Metadata } from 'next';
-import { Space_Grotesk, Syne, Cormorant_Garamond, Oswald, Bebas_Neue } from 'next/font/google';
+import { Inter, Syne, Cormorant_Garamond, Oswald, Bebas_Neue } from 'next/font/google';
+import localFont from 'next/font/local';
 import SmoothScrollProvider from '@/providers/SmoothScrollProvider';
 import I18nInit from '@/components/I18nInit';
 import LiquidGlassFilter from '@/components/LiquidGlassFilter';
 import './globals.css';
+
+const roobert = localFont({
+  src: [
+    {
+      path: '../../public/fonts/Roobert-Light-BmXn8GWP.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Roobert-Regular-CznfJWXD.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Roobert-Medium-BWz8uOPc.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-roobert',
+  display: 'swap',
+});
+
+const geistMono = localFont({
+  src: [
+    {
+      path: '../../public/fonts/GeistMono-Regular-Cgn4a1uh.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/GeistMono-SemiBold-iuRsyzQv.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-geist-mono',
+  display: 'swap',
+});
 
 const oswald = Oswald({
   subsets: ['latin'],
@@ -19,10 +59,10 @@ const bebasNeue = Bebas_Neue({
   display: 'swap',
 });
 
-const spaceGrotesk = Space_Grotesk({
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-space-grotesk',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-inter',
   display: 'swap',
 });
 
@@ -54,7 +94,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${syne.variable} ${cormorant.variable} ${oswald.variable} ${bebasNeue.variable}`}
+      className={`${inter.variable} ${syne.variable} ${cormorant.variable} ${oswald.variable} ${bebasNeue.variable} ${roobert.variable} ${geistMono.variable}`}
     >
       <body className="font-sans">
         <I18nInit />

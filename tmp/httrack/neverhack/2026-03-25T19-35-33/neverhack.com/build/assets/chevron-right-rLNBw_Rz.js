@@ -1,0 +1,1 @@
+import{r as e}from"./client-DVrblGvH.js";const o=(r,t)=>e.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",width:20,height:20,fill:"none",viewBox:"0 0 20 20",focusable:"false","aria-hidden":"true",ref:t,...r},e.createElement("path",{stroke:"currentColor",strokeLinecap:"square",d:"m8 6 4 4-4 4"})),s=e.forwardRef(o);export{s as F};

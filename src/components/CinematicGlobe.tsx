@@ -109,9 +109,9 @@ export default function CinematicGlobe() {
         vec4 texColor = texture2D(globeTexture, vUv);
         if (texColor.r > 0.1) discard; // Ocean
 
-        // Premium Green HDR Color bleeding
-        vec3 baseColor = vec3(0.2, 0.8, 0.1);
-        vec3 hdrColor = baseColor * 4.0;
+        // Darker Deep Purple
+        vec3 baseColor = vec3(0.38, 0.06, 0.80);
+        vec3 hdrColor = baseColor * 3.5;
 
         gl_FragColor = vec4(hdrColor, uOpacity);
       }
@@ -326,8 +326,8 @@ export default function CinematicGlobe() {
       <Sphere args={[2.4, 64, 64]}>
         <meshStandardMaterial
           ref={solidSphereMaterialRef}
-          color="#cfff28"
-          emissive="#cfff28"
+          color="#6210CC"
+          emissive="#6210CC"
           emissiveIntensity={2.5}
           toneMapped={false}
           transparent={true}
@@ -336,10 +336,10 @@ export default function CinematicGlobe() {
       </Sphere>
 
       {/* Hero Point Light (Provides rim lighting to the dark shell from the outside) */}
-      <pointLight color="#cfff28" intensity={15} distance={10} position={[0,0,0]} />
+      <pointLight color="#6210CC" intensity={15} distance={10} position={[0,0,0]} />
 
       {/* Explosive Flash Light (Simulates energy escaping the cracks during GSAP timeline) */}
-      <pointLight ref={flashLightRef} color="#cfff28" intensity={0} distance={15} position={[0,0,0]} />
+      <pointLight ref={flashLightRef} color="#6210CC" intensity={0} distance={15} position={[0,0,0]} />
 
       {/* 3. Black Blocking Sphere (Radius 2.35). Always visible, blocks back-side particle see-through. */}
       <Sphere args={[2.35, 32, 32]}>

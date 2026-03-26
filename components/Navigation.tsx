@@ -3,9 +3,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { X, Instagram, Linkedin } from 'lucide-react';
+import { ArrowUpRight, X } from 'lucide-react';
 
 import { HOME_STORY_ANCHORS, PRIMARY_NAV_ITEMS } from '@/data/navigation';
 
@@ -17,135 +17,106 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ isOpen, onClose }) => {
   const pathname = usePathname();
   const { t, i18n } = useTranslation();
-
-  const menuVariants = {
-    closed: {
-      x: '100%',
-      transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] as const },
-    },
-    open: {
-      x: 0,
-      transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] as const },
-    },
-  };
-
-  const linkVariants = {
-    closed: { x: 80, opacity: 0 },
-    open: (i: number) => ({
-      x: 0,
-      opacity: 1,
-      transition: { delay: 0.2 + i * 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
-    }),
-  };
-
   const currentLanguage = i18n.language || 'en';
 
   return (
     <AnimatePresence>
-      {isOpen && (
+      {isOpen ? (
         <motion.div
-          initial="closed"
-          animate="open"
-          exit="closed"
-          variants={menuVariants}
-          className="fixed inset-0 z-50 flex flex-col overflow-hidden border border-white/[0.08] bg-black/80 text-white backdrop-blur-[48px] saturate-[180%] md:flex-row"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.28 }}
+          className="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm md:hidden"
         >
-          <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[150vh] w-[150vw] -translate-x-1/2 -translate-y-1/2 rotate-[32deg] bg-gradient-to-br from-[#cfff28]/15 via-[#345c59]/15 to-transparent blur-[120px] md:w-[50vw]" />
-
-          <button
-            onClick={onClose}
-            className="absolute right-8 top-8 z-50 p-2 transition-all duration-500 hover:rotate-90 hover:text-neon-lime"
-            aria-label={t('navigation.close')}
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            className="ml-auto flex h-full w-[min(92vw,460px)] flex-col border-l border-white/10 bg-[#0f0f10]"
           >
-            <X size={28} strokeWidth={1} />
-          </button>
-
-          <div className="hidden h-full w-1/3 flex-col justify-between border-r border-white/[0.08] p-16 md:flex">
-            <div>
-              <h2 className="mb-8 font-display text-xs uppercase tracking-[0.3em] text-neon-lime">{t('navigation.contactLabel')}</h2>
-              <p className="text-sm font-light leading-relaxed text-white/40">
-                {t('navigation.contactBlock.line1')}
-                <br />
-                {t('navigation.contactBlock.line2')}
-                <br />
-                {t('navigation.contactBlock.line3')}
-                <br />
-                <Link href="mailto:hello@webstar.studio" className="text-white/60 transition-colors hover:text-neon-lime">
-                  hello@webstar.studio
-                </Link>
-              </p>
+            <div className="flex h-[78px] items-center justify-between border-b border-white/10 px-5">
+              <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/45">
+                {t('navigation.label')}
+              </span>
+              <button
+                type="button"
+                onClick={onClose}
+                className="inline-flex items-center justify-center text-white/72 transition-colors hover:text-white"
+                aria-label={t('navigation.close')}
+              >
+                <X size={18} strokeWidth={1.5} />
+              </button>
             </div>
 
-            <div className="flex gap-6">
-              <Link href="https://instagram.com/weare.webstar" target="_blank" rel="noreferrer" className="text-white/40 transition-colors duration-300 hover:text-neon-lime">
-                <Instagram size={20} />
-              </Link>
-              <Link href="https://linkedin.com/company/webstarstudio" target="_blank" rel="noreferrer" className="text-white/40 transition-colors duration-300 hover:text-neon-lime">
-                <Linkedin size={20} />
-              </Link>
-            </div>
-          </div>
+            <div className="overflow-y-auto">
+              <div className="border-b border-white/10 px-5 py-5">
+                <p className="text-[10px] uppercase tracking-[0.24em] text-white/42">{t('navigation.contactLabel')}</p>
+                <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/68">
+                  {t('navigation.contactBlock.line1')}
+                  <br />
+                  {t('navigation.contactBlock.line2')}
+                  <br />
+                  {t('navigation.contactBlock.line3')}
+                </p>
+              </div>
 
-          <div className="flex h-full flex-1 flex-col justify-center px-8 md:px-24">
-            <nav className="flex flex-col gap-3 md:gap-5">
-              {PRIMARY_NAV_ITEMS.map((item, index) => {
-                const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
+              <nav className="border-b border-white/10">
+                {PRIMARY_NAV_ITEMS.map((item) => {
+                  const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
 
-                return (
-                  <motion.div key={item.id} custom={index} variants={linkVariants}>
+                  return (
                     <Link
+                      key={item.id}
                       href={item.href}
                       onClick={onClose}
-                      className={`font-display text-4xl uppercase tracking-wide transition-colors duration-300 hover:translate-x-3 hover:text-neon-lime md:text-7xl ${
-                        isActive ? 'text-neon-lime' : 'text-white/60'
-                      }`}
+                      className={`public-mobile-row ${isActive ? 'text-white' : 'text-white/74'}`}
+                    >
+                      <span className="font-sans text-[13px] uppercase tracking-[0.24em]">{t(item.labelKey)}</span>
+                      <ArrowUpRight size={15} strokeWidth={1.25} />
+                    </Link>
+                  );
+                })}
+              </nav>
+
+              <div className="border-b border-white/10 px-5 py-5">
+                <p className="text-[10px] uppercase tracking-[0.24em] text-white/42">{t('nav.story.label')}</p>
+                <div className="mt-4 grid gap-2">
+                  {HOME_STORY_ANCHORS.map((item) => (
+                    <Link
+                      key={item.id}
+                      href={item.href}
+                      onClick={onClose}
+                      className="text-sm uppercase tracking-[0.2em] text-white/68 transition-colors hover:text-white"
                     >
                       {t(item.labelKey)}
                     </Link>
-                  </motion.div>
-                );
-              })}
-            </nav>
+                  ))}
+                </div>
+              </div>
 
-            <motion.div variants={linkVariants} custom={PRIMARY_NAV_ITEMS.length + 1} className="mt-14">
-              <p className="mb-3 text-[10px] uppercase tracking-[0.3em] text-white/35">{t('nav.story.label')}</p>
-              <div className="flex flex-wrap gap-4 text-xs tracking-[0.2em] text-white/55">
-                {HOME_STORY_ANCHORS.map((item) => (
-                  <Link
-                    key={item.id}
-                    href={item.href}
-                    onClick={onClose}
-                    className="border-b border-transparent pb-1 transition-colors hover:border-neon-lime hover:text-neon-lime"
+              <div className="grid grid-cols-3 border-b border-white/10">
+                {['en', 'pt', 'es'].map((language) => (
+                  <button
+                    key={language}
+                    type="button"
+                    onClick={() => {
+                      i18n.changeLanguage(language);
+                      onClose();
+                    }}
+                    className={`public-mobile-utility ${
+                      currentLanguage.startsWith(language) ? 'text-white' : 'text-white/45'
+                    }`}
                   >
-                    {t(item.labelKey)}
-                  </Link>
+                    {language}
+                  </button>
                 ))}
               </div>
-            </motion.div>
-
-            <motion.div variants={linkVariants} custom={PRIMARY_NAV_ITEMS.length + 2} className="mt-12 flex gap-6 text-xs tracking-[0.3em]">
-              <button
-                onClick={() => i18n.changeLanguage('en')}
-                className={`${currentLanguage.startsWith('en') ? 'border-b border-neon-lime text-neon-lime' : 'text-white/30 hover:text-white/60'} pb-1 transition-colors`}
-              >
-                EN
-              </button>
-              <button
-                onClick={() => i18n.changeLanguage('pt')}
-                className={`${currentLanguage.startsWith('pt') ? 'border-b border-neon-lime text-neon-lime' : 'text-white/30 hover:text-white/60'} pb-1 transition-colors`}
-              >
-                PT
-              </button>
-              <button
-                onClick={() => i18n.changeLanguage('es')}
-                className={`${currentLanguage.startsWith('es') ? 'border-b border-neon-lime text-neon-lime' : 'text-white/30 hover:text-white/60'} pb-1 transition-colors`}
-              >
-                ES
-              </button>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </motion.div>
-      )}
+      ) : null}
     </AnimatePresence>
   );
 };

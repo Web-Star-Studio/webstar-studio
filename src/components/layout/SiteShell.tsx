@@ -18,18 +18,18 @@ interface SiteShellProps {
   withCursor?: boolean;
 }
 
-export default function SiteShell({ children, withBackground = true, withCursor = true }: SiteShellProps) {
+export default function SiteShell({ children, withBackground = false, withCursor = false }: SiteShellProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <main className="relative min-h-screen bg-transparent selection:bg-neon-lime selection:text-black">
+    <main className="public-shell selection:bg-white selection:text-black">
       <div className="relative z-[9999]">
         <Header isMenuOpen={isMenuOpen} onMenuClick={() => setIsMenuOpen((prev) => !prev)} />
         <Navigation isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       </div>
 
       {withBackground ? (
-        <div className="fixed left-0 top-0 z-0 h-screen w-full pointer-events-none">
+        <div className="pointer-events-none fixed left-0 top-0 z-0 h-screen w-full opacity-30">
           <BackgroundCanvas />
         </div>
       ) : null}

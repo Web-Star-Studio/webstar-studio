@@ -92,51 +92,57 @@ const Hero: React.FC = () => {
   return (
     <section ref={containerRef} className="relative h-screen bg-transparent text-white overflow-hidden flex flex-col items-center justify-center font-sans" style={{ perspective: '1000px' }}>
 
+      {/* Dark Cube Background Placeholder */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center opacity-60">
+        <div className="w-[800px] h-[800px] bg-gradient-to-t from-black via-white/5 to-transparent border border-[#222] rounded-2xl transform rotate-12 scale-125 blur-[2px]"></div>
+      </div>
+
       {/* Foreground UI and Typography */}
       <div
         ref={textContainerRef}
-        className="relative z-10 w-full h-full flex flex-col md:flex-row items-center justify-between px-6 md:px-32 lg:px-40 pointer-events-none mt-10 md:mt-16"
+        className="relative z-10 w-full h-full max-w-[1680px] mx-auto px-4 sm:px-8 xl:px-9 flex flex-col justify-center translate-y-24 opacity-0"
       >
-        {/* Left Typography */}
-        <div className="flex flex-col items-start w-full lg:w-[60%] leading-[0.85] font-display uppercase">
-          <h1
-            ref={text1Ref}
-            className="text-[12vw] lg:text-[7.5vw] whitespace-nowrap text-white"
-            style={{ transformStyle: 'preserve-3d' }}
-          >
-            {splitText('WE SHAPE')}
+        {/* Giant Left Text */}
+        <div className="flex flex-col items-start w-[720px] absolute left-0 bottom-[45%] translate-y-1/2 pl-9 font-sans">
+          <h1 ref={text1Ref} className="text-white text-[90px] leading-[1.0] font-light tracking-[-0.02em] text-left" style={{ transformStyle: 'preserve-3d' }}>
+            {splitText('Your cyber')}
           </h1>
-          <h1
-            ref={text2Ref}
-            className="text-[12vw] lg:text-[7.5vw] whitespace-nowrap text-white/20 font-light"
-            style={{ transformStyle: 'preserve-3d' }}
-          >
-            {splitText('THE DIGITAL')}
+          <h1 ref={text2Ref} className="text-white text-[90px] leading-[1.0] font-light tracking-[-0.02em] text-left" style={{ transformStyle: 'preserve-3d' }}>
+            {splitText('performance')}
           </h1>
-          <h1
-            ref={text3Ref}
-            className="text-[12vw] lg:text-[7.5vw] whitespace-nowrap text-white font-bold"
-            style={{ transformStyle: 'preserve-3d' }}
-          >
-            {splitText('TOMORROW')}
+          <h1 ref={text3Ref} className="text-white text-[90px] leading-[1.0] font-light tracking-[-0.02em] text-left" style={{ transformStyle: 'preserve-3d' }}>
+            {splitText('partner')}
           </h1>
         </div>
 
         {/* Right Paragraph */}
-        <div className="mt-12 lg:mt-0 flex flex-col items-start lg:items-end w-full lg:w-[35%] text-left lg:translate-y-12">
-          <p ref={paragraphRef} className="text-white/50 text-[14px] md:text-[16px] leading-[1.6] font-light max-w-sm lg:max-w-xs font-sans">
-            We architect digital ecosystems with strategy, applied AI, and design precision so ambitious companies can grow with more clarity, speed, and technical depth.
+        <div className="hidden lg:flex flex-col items-start w-full max-w-[620px] absolute right-0 pr-9 xl:right-[240px] xl:pr-0 bottom-[25%] lg:bottom-[32%] xl:bottom-[28%] text-left pl-6">
+          <p ref={paragraphRef} className="text-white/85 text-[18px] leading-[1.8] font-light font-sans tracking-wide">
+            Let's make cybersecurity a strength for your business. We're here to help
+            with everything from risk management and compliance to training and
+            continuous monitoring, ensuring your growth is always protected.
           </p>
         </div>
       </div>
 
       {/* Bottom Bar: Scroll indicator & Border Line */}
-      <div ref={bottomBarRef} className="absolute bottom-0 left-0 w-full z-10 bg-transparent">
-        <div className="h-20 lg:h-24 mx-6 md:mx-32 lg:mx-40 border-t border-white/10 flex items-center justify-between">
-          <span className="text-white/30 text-[9px] tracking-[0.3em] font-medium uppercase font-sans">
-            SCROLL TO DISCOVER
-          </span>
-          <span className="text-white/30 text-sm font-extralight animate-bounce">↓</span>
+      <div ref={bottomBarRef} className="absolute bottom-0 left-0 w-full z-10 bg-transparent flex justify-center">
+        <div className="w-full max-w-[1680px] flex items-center justify-between border-t border-white/15 px-9 py-[40px] xl:py-[67px]">
+          
+          {/* Scroll text on the left */}
+          <div className="flex items-center">
+            <span className="hidden lg:block text-white/50 text-[12px] font-sans tracking-[0.02em] uppercase leading-[1.2]">
+              SCROLL TO DISCOVER
+            </span>
+          </div>
+
+          {/* Arrow on the right */}
+          <div className="relative w-[22px] h-[22px] flex items-center justify-center cursor-pointer opacity-80 hover:opacity-100 transition-opacity animate-bounce">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-white">
+              <path d="M12 3V21M12 21L5 14M12 21L19 14" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+
         </div>
       </div>
 

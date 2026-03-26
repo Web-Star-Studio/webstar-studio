@@ -2,89 +2,89 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { Linkedin, Youtube } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-
-import { PRIMARY_NAV_ITEMS } from '@/data/navigation';
-import FluidBackground from '@/components/FluidBackground';
-
-const footerNavItems = PRIMARY_NAV_ITEMS.filter((item) => item.id !== 'home');
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
-  const year = new Date().getFullYear();
-  const socialItems = [
-    { label: 'Instagram', href: 'https://instagram.com/weare.webstar' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/company/webstarstudio' },
-    { label: 'Email', href: `mailto:${t('footer.email')}` },
-  ];
+  const statement = t('footer.statement.lines', { returnObjects: true }) as string[];
+  const utilityLinks = t('footer.utilityLinks', { returnObjects: true }) as Array<{ label: string; href: string }>;
 
   return (
-    <footer className="relative overflow-hidden bg-black px-0 pb-0 pt-10 text-white md:pt-16 font-sans">
-      <div className="absolute inset-0 z-0 bg-black pointer-events-none">
-        <FluidBackground />
-      </div>
-      
-      {/* Extra dimming layer to ensure readability if FluidBackground is bright */}
-      <div className="absolute inset-0 z-[1] bg-black/40 pointer-events-none" />
+    <footer className="border-t border-white/10 bg-[#0b0b0c] text-white">
+      <div className="public-container">
+        <div className="border-x border-white/10">
+          <div className="flex min-h-[460px] flex-col items-center justify-center border-b border-white/10 px-6 py-16 text-center">
+            <div
+              className="mb-10 h-20 w-20 rounded-[24px] bg-[linear-gradient(180deg,#c39bff,#7b44ff_52%,#efe7ff)] shadow-[0_20px_60px_rgba(123,68,255,0.26)]"
+              style={{ animation: 'home-chip-float 6s ease-in-out infinite' }}
+            />
+            <div className="space-y-1">
+              {statement.map((line) => (
+                <p key={line} className="font-sans text-[clamp(3rem,5.8vw,5.4rem)] font-light leading-[0.96] tracking-[-0.07em] text-white">
+                  {line}
+                </p>
+              ))}
+            </div>
+          </div>
 
-      <div className="relative z-10 mx-auto overflow-hidden h-screen max-h-[800px] flex flex-col justify-between">
-        <div className="flex-1 w-full px-8 md:px-16 pt-8 md:pt-12">
-          <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(200px,auto)_minmax(200px,auto)]">
-            <div className="flex flex-col items-start leading-[0.85] font-display uppercase">
-              <h2 className="text-[10vw] md:text-[8vw] lg:text-[5.5vw] whitespace-nowrap text-white">
-                AVAILABLE FOR
-              </h2>
-              <h2 className="text-[10vw] md:text-[8vw] lg:text-[5.5vw] whitespace-nowrap text-white font-light">
-                SELECT
-              </h2>
-              <h2 className="text-[10vw] md:text-[8vw] lg:text-[5.5vw] whitespace-nowrap text-white font-bold">
-                PROJECTS
-              </h2>
-              <div className="mt-10 md:mt-12 flex flex-wrap gap-x-8 gap-y-2 text-xs font-medium uppercase tracking-widest text-[#f4f1e8]/80 font-sans">
-                <span>&copy; {year} WEBSTAR.STUDIO</span>
-                <span>RECIFE, BRAZIL</span>
-              </div>
+          <div className="hidden md:block">
+            <div className="grid grid-cols-[120px_120px_minmax(0,1fr)_repeat(3,160px)] border-b border-white/10">
+              <a
+                href="https://www.linkedin.com/company/neverhack/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex min-h-[88px] items-center justify-center border-r border-white/10 text-white/72 transition-colors hover:text-white"
+              >
+                <Linkedin size={18} strokeWidth={1.6} />
+              </a>
+              <a
+                href="https://www.youtube.com/channel/UCTWlceXeb6kQA4GOjMLCe_w"
+                target="_blank"
+                rel="noreferrer"
+                className="flex min-h-[88px] items-center justify-center border-r border-white/10 text-white/72 transition-colors hover:text-white"
+              >
+                <Youtube size={18} strokeWidth={1.6} />
+              </a>
+              <div className="border-r border-white/10 bg-[url('/neverhack-reference/images/dots-card.png')] bg-cover bg-center opacity-35" />
+              <Link href="/about" className="flex min-h-[88px] items-center justify-center border-r border-white/10 text-white/72 transition-colors hover:text-white">
+                Compliance
+              </Link>
+              <Link href="/portfolio" className="flex min-h-[88px] items-center justify-center border-r border-white/10 text-white/72 transition-colors hover:text-white">
+                Press
+              </Link>
+              <Link href="/services" className="flex min-h-[88px] items-center justify-center text-white/72 transition-colors hover:text-white">
+                R&amp;D
+              </Link>
             </div>
 
-            <div className="hidden lg:block">
-              <p className="mb-6 text-[0.65rem] uppercase tracking-[0.2em] text-[#f4f1e8]/50">Menu</p>
-              <div className="space-y-3">
-                {footerNavItems.map((item) => (
-                  <Link
-                    key={item.id}
-                    href={item.href}
-                    className="block text-lg tracking-tight text-[#f4f1e8] transition-colors duration-300 hover:text-neon-lime"
-                  >
-                    {t(item.labelKey)}
-                  </Link>
-                ))}
-              </div>
+            <div className="grid grid-cols-5 border-b border-white/10">
+              {utilityLinks.map((item, index) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={`flex min-h-[88px] items-center justify-center text-white/56 transition-colors hover:text-white ${
+                    index < utilityLinks.length - 1 ? 'border-r border-white/10' : ''
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
+          </div>
 
-            <div className="hidden lg:block">
-              <p className="mb-6 text-[0.65rem] uppercase tracking-[0.2em] text-[#f4f1e8]/50">Social</p>
-              <div className="space-y-3">
-                {socialItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    target={item.href.startsWith('http') ? '_blank' : undefined}
-                    rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
-                    className="block text-lg tracking-tight text-[#f4f1e8] transition-colors duration-300 hover:text-neon-lime"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
+          <div className="grid grid-cols-2 border-b border-white/10 md:hidden">
+            {utilityLinks.map((item) => (
+              <Link key={item.label} href={item.href} className="public-mobile-row">
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
 
-
-
-        {/* Massive Bottom Logo Graphic */}
-        <div className="absolute inset-x-0 bottom-0 overflow-hidden pointer-events-none flex justify-center items-end">
-          <img src="/webstar-logo.svg" alt="Webstar" className="relative w-[115%] max-w-none h-auto [transform:translate3d(0,44%,0)_scaleY(0.45)] md:[transform:translate3d(0,48%,0)_scaleY(0.55)] opacity-90 mix-blend-screen" />
+        <div className="flex flex-col gap-2 px-2 py-5 text-center text-[11px] tracking-[0.08em] text-white/34 md:px-6">
+          <p>NEVERHACK © 2026 All rights reserved</p>
+          <p>Tailor-made by Makepill &amp; 60fps</p>
         </div>
       </div>
     </footer>
@@ -92,4 +92,3 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
-

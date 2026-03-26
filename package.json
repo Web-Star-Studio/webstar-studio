@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "crawl:neverhack": "node scripts/firecrawl-crawl-site.mjs --url https://neverhack.com --label neverhack",
+    "crawl:site": "node scripts/firecrawl-crawl-site.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
